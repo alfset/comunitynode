@@ -2,7 +2,7 @@ import React from 'react';
 import { images } from '../../constants';
 import { IconScroll } from '../../components';
 import Card from 'react-bootstrap/Card';
-import './Hero.css'; // Make sure this import is correct
+import './Hero.css';
 
 const logos = ["logo01", "logo02", "logo03", "logo04", "logo05", "logo06"];
 

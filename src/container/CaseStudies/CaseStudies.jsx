@@ -9,14 +9,13 @@ const CaseStudies = () => {
   return (
     <div className="section-padding" id="use-cases">
 
-      <Headings title="Case Studies" text="Explore Real-Life Examples of Our Proven Digital Marketing Success through Our Case Studies" />
+      <Headings title="Case Studies" text="Our validator that has been operating on the Planq Network for One years. Founded by a team of blockchain enthusiasts and Comunity Of Node Runner in Surabaya, We quickly established itself as a reliable validator thanks to its strong focus on security, community engagement, and performance" />
 
         <div className="case-studies">
 
           {data.CaseStudies.map(({ text, link }, index) => (
             <div key="index" className="case-studies-item">
               <p>{text}</p>
-              <a href={link} alt="Learn more">Learn more <FiArrowUpRight /></a>
             </div>
           ))}
         </div>
