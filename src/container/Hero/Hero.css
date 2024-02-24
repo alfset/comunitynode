@@ -1,0 +1,25 @@
+.clients{
+   display: flex;
+   justify-content: center;
+   flex-wrap: nowrap;
+   overflow-x: scroll;
+  }
+.clients img{
+    filter: grayscale(100%);
+    cursor: pointer;
+    width: 250%; /* Makes the image full width */
+    height: auto; 
+    padding: .5rem;
+    margin: 2px
+}
+.clients img:hover{
+    filter: grayscale(0);
+}
+::-webkit-scrollbar {
+    width: 0;  
+    background: transparent;  
+}
+.green-card {
+    background-color: #B9FF66; /* Or use a specific green shade like #00ff00 */
+  }
+
