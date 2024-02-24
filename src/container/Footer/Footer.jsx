@@ -10,14 +10,13 @@ const Footer = () => {
             <li> <span>Contact us:</span></li>
             <li>Email: alfset5@gmail.com</li>
             <li>Telegram: @alfsst</li>
-            <li>Address: 1234 Main St
-              Moonstone City, Stardust State 12345</li>
+            <li>Address: Ngaglik Kuburan 19 </li>
+            Surabaya, East Java, Indonesia.
           </ul>
         </div>
 
         <div className="rights">
           <p>© 2023 ComunityNode. All Rights Reserved.</p>
-          <p><a href="#" alt="Privacy Policy">Privacy Policy</a></p>
 
         </div>
       </div>
