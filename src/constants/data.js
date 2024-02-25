@@ -81,20 +81,20 @@ const WorkingProcess = [
         description: 'Our previously Apps development, is Creating and managing Decentralized Exhange on Planq Foundation. Thanks to Planq Foundation team who belive and support us to build their Growth of ecosystem',
     },
     {
-        title: 'Snapshot',
-        description: 'Our previously Apps development, is Creating and managing Decentralized Exhange on Planq Foundation. Thanks to Planq Foundation team who belive and support us to build their Growth of ecosystem',
+        title: 'Snapshot Provider',
+        description: 'the Snapshot Provider! In the ever-evolving world of blockchain technology, staying updated and accessing historical data quickly and efficiently has become a paramount concern for developers, validators, and users alike.',
     },
     {
         title: 'Guide',
-        description: 'Our previously Apps development, is Creating and managing Decentralized Exhange on Planq Foundation. Thanks to Planq Foundation team who belive and support us to build their Growth of ecosystem',
+        description: 'Whether youre a developer, investor, or simply a blockchain enthusiast, understanding how to set up and interact with a blockchain node is crucial. This guide will provide you with step-by-step instructions and essential tips for a smooth experience',
     },
     {
-        title: 'Reporting and Communication',
-        description: 'Our previously Apps development, is Creating and managing Decentralized Exhange on Planq Foundation. Thanks to Planq Foundation team who belive and support us to build their Growth of ecosystem',
+        title: 'IBC and bridge Operator',
+        description: 'Interoperability and seamless integration are the keys to unlocking true potential and value. As an IBC (Inter-Blockchain Communication) and Bridge Operator, we specialize in bridging the gaps between isolated blockchain networks, creating a unified, interconnected ecosystem',
     },
     {
         title: 'Continual Improvement',
-        description: 'Our previously Apps development, is Creating and managing Decentralized Exhange on Planq Foundation. Thanks to Planq Foundation team who belive and support us to build their Growth of ecosystem',
+        description: 'Continual Improvement is the ongoing effort to enhance products, services, or processes. These efforts can seek "incremental" improvement over time or "breakthrough" improvement all at once. Through a series of small, manageable changes, businesses can achieve substantial long-term results, improving productivity, customer satisfaction, and profitability',
     },
 
 ];

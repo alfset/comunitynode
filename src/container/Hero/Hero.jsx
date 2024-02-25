@@ -15,36 +15,42 @@ const Hero = () => {
 
   return (
     <div className="hero">
-      <div className="row align-items-center">
-        <div className="col-md-6 col-12">
-          <h1 className="title">Stake, Earn, And Learn about Blockchain Project with us</h1>
-        </div>
-        <div className="col-md-6 col-12">
-          {/* Apply the custom class to the Card */}
-          <Card className="green-card">
-            <Card.Body>
-              <Card.Title>Staking Stats</Card.Title>
-              <Card.Text>
-                <strong>Assets Staked:</strong> {stats.assetsStaked}
-              </Card.Text>
-              <Card.Text>
-                <strong>Total Nodes Supported:</strong> {stats.totalNodes}
-              </Card.Text>
-              <Card.Text>
-                <strong>Total Delegators:</strong> {stats.totalDelegators}
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
+    <div className="row align-items-center">
+      <div className="col-md-6 col-12">
+        <h1 className="title fade-in">Stake, Earn, And Learn about Blockchain Project with us</h1>
       </div>
-
-      <div className="clients">
+      <div className="col-md-6 col-12">
+        <Card className="green-card fade-in">
+          <Card.Body>
+            <Card.Title>Staking Stats</Card.Title>
+            <Card.Text>
+              <strong>Assets Staked:</strong> {stats.assetsStaked}
+            </Card.Text>
+            <Card.Text>
+              <strong>Total Nodes Supported:</strong> {stats.totalNodes}
+            </Card.Text>
+            <Card.Text>
+              <strong>Total Delegators:</strong> {stats.totalDelegators}
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </div>
+    </div>
+  
+    {/* Updated part */}
+    <div className="clients">
+      <div className="running-logos">
         {logos.map((logo, index) => (
-          <img key={index} src={images[logo]} alt={images[logo]} />
+          <img key={index} src={images[logo]} alt="logo" />
+        ))}
+        {/* Duplicate logos for a seamless loop */}
+        {logos.map((logo, index) => (
+          <img key={`duplicate-${index}`} src={images[logo]} alt="logo" />
         ))}
       </div>
-      <IconScroll />
     </div>
+    <IconScroll />
+  </div>
   );
 }
 
