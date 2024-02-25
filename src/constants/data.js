@@ -118,6 +118,18 @@ const Team = [
         info: '3+ years of experience in focused on implementing and managing blockchain-based solutions within an organization or for clients',
         linkedin: '#',
     },
+    {
+        name: 'Alfin Sug',
+        position: 'Fullstack web3',
+        info: '3+ years of experience in focused on implementing and managing blockchain-based solutions within an organization or for clients',
+        linkedin: '#',
+    },
+    {
+        name: 'Afif Abdillah',
+        position: 'Devops Manager',
+        info: '3+ years of experience in focused on implementing and managing blockchain-based solutions within an organization or for clients',
+        linkedin: '#',
+    },
 ];
 
 export default { Menu, CaseStudies, WorkingProcess, Team, ServicesData };
