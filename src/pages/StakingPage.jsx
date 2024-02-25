@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button, Form, Dropdown, Table } from 'react-bootstrap';
-import { DirectSecp256k1HdWallet, SigningStargateClient, coins } from '@cosmjs/stargate';
-import { assertIsBroadcastTxSuccess } from '@cosmjs/stargate';
 import loadingGif from '../assets/animate1.gif';
 
 const chains = [
@@ -12,34 +10,6 @@ const chains = [
   { id: 'planq_7070-2', name: 'Planq Network', apiUrl: 'https://rest.planq.network', denom: 'PLQ', variant: 'info' },
   { id: 'celestia', name: 'Celestia Network', apiUrl: 'https://api.lunaroasis.net', denom: 'TIA', variant: 'dark' },
 ];
-
-
-const DelegateModal = ({ show, handleClose, handleDelegate, validatorAddress, amount, setAmount }) => {
-  return (
-    <Modal show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>Delegate Tokens</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <Form>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Staking Amount</Form.Label>
-            <Form.Control
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              placeholder="Enter amount to stake"
-            />
-          </Form.Group>
-        </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>Close</Button>
-        <Button variant="primary" onClick={() => handleDelegate(validatorAddress, amount)}>Delegate</Button>
-      </Modal.Footer>
-    </Modal>
-  );
-};
 
 const StakingPage = () => {
   const [selectedChain, setSelectedChain] = useState(chains[0].id);
@@ -130,57 +100,20 @@ const StakingPage = () => {
       return `${tokens} ${chain.denom}`;
     }
   };
-  const handleDelegate = async (validatorAddress, amount) => {
+
+  const handleDelegate = (validatorId) => {
     if (!walletConnected) {
-      alert("Please connect your Keplr wallet first.");
+      connectKeplrWallet();
       return;
     }
-  
-    const chain = chains.find(c => c.id === selectedChain);
-    if (!chain) {
-      console.error("Selected chain configuration not found.");
-      return;
-    }
-  
-    try {
-      await window.keplr.enable(chain.id);
-      const offlineSigner = window.getOfflineSigner(chain.id);
-      const accounts = await offlineSigner.getAccounts();
-    
-      const stargateClient = await SigningStargateClient.connectWithSigner(chain.apiUrl, offlineSigner);
-      const convertedAmount = coins(amount, chain.denom); // Use the correct denomination
-    
-      const fee = { amount: coins(5000, chain.denom), gas: "200000" };
-    
-      const result = await stargateClient.delegateTokens(
-        accounts[0].address,
-        validatorAddress,
-        convertedAmount,
-        fee
-      );
-      assertIsBroadcastTxSuccess(result);
-    
-      alert("Delegation successful!");
-      setShowDelegationModal(false); // Close the modal on success
-    } catch (error) {
-      console.error("Delegation failed:", error);
-      alert("Delegation failed. See console for details.");
-    }
-  };
-  const DelegateModal = (validatorId) => {
-    if (!walletConnected) {
-      connectKeplrWallet(); // Prompt connection if not connected
-      return;
-    }
-    setSelectedValidator(validatorId); // Set the selected validator for delegation
-    setDelegationAmount(''); // Reset or set initial delegation amount if necessary
-    setShowDelegationModal(true); // Open the delegation modal
+    console.log(`Delegating to validator: ${validatorId}`);
+    // Implement delegation logic here
   };
 
   return (
     <div className="container mt-4">
       <h1>Staking Page</h1>
-      <Button variant="outline-secondary" size="sm" className="ml-2 p-0" style={{fontSize: '0.75rem', lineHeight: '1.5', height: 'auto', width: 'auto'}} onClick={connectKeplrWallet} className="mb-8">
+      <Button variant="outline-secondary" size="sm" className="ml-2 p-0" style={{fontSize: '0.75rem', lineHeight: '1.5', height: 'auto', width: 'auto'}} onClick={connectKeplrWallet} className="mb-3">
   {walletConnected ? `Connected: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : 'Connect Keplr Wallet'}
 </Button>
 <Dropdown className="mb-4">
@@ -200,15 +133,6 @@ const StakingPage = () => {
     ))}
   </Dropdown.Menu>
 </Dropdown>
-<DelegateModal
-      show={showDelegationModal}
-      handleClose={() => setShowDelegationModal(false)}
-      handleDelegate={handleDelegate}
-      validatorAddress={selectedValidator}
-      amount={delegationAmount}
-      setAmount={setDelegationAmount}
-      denom={chains.find((chain) => chain.id === selectedChain)?.denom} // Pass the current chain's denom to the modal
-    />
       <div>
         <h2>Validators</h2>
         {isLoading ? (
@@ -220,7 +144,6 @@ const StakingPage = () => {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Moniker</th>
                 <th>Validator Address</th>
                 <th>Staked Amount</th>
