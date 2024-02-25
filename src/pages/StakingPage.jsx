@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import loadingGif from '../assets/animate1.gif';
+
 
 const StakingPage = () => {
   const [walletAddress, setWalletAddress] = useState('');
@@ -21,21 +23,16 @@ const StakingPage = () => {
         chainName: "Planq",
         rpc: "https://rpc.planq.network",
         rest: "https://rest.planq.network",
-        // Add other necessary chain configuration details here
       });
   
-      // Request Keplr to enable the user's wallet for your chain
       await window.keplr.enable(chainId);
   
-      // Get the offline signer for the user's wallet
       const offlineSigner = window.getOfflineSigner(chainId);
       const accounts = await offlineSigner.getAccounts();
   
-      // Set the user's wallet address in your component's state
       setWalletAddress(accounts[0].address);
       console.log("Connected wallet address:", accounts[0].address);
       
-      // Optionally, fetch validators after successful connection
       fetchValidators();
     } catch (error) {
       console.error("Failed to connect to the Keplr wallet:", error);
@@ -47,7 +44,6 @@ const StakingPage = () => {
     try {
       const response = await fetch('https://rest.planq.network/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED');
       const data = await response.json();
-      // Assuming the validators' staked amount is part of the response, otherwise, you'd need additional fetching logic here
       const validatorsData = data.validators || []; // Fallback to an empty array if undefined
       setValidators(validatorsData);
     } catch (error) {
@@ -58,8 +54,7 @@ const StakingPage = () => {
   };
 
   useEffect(() => {
-    // Optionally, you might want to fetch validators on component mount
-    // fetchValidators();
+  
   }, []);
 
   return (
@@ -73,8 +68,13 @@ const StakingPage = () => {
       <div className="mt-4">
         <h2>Active Validators</h2>
         {isLoadingValidators ? (
-          <p>Loading validators...</p>
-        ) : (
+  <div className="d-flex justify-content-center">
+    <img src={loadingGif} alt="Loading..." />
+    <div className="d-flex justify-content-center">
+        <text style={{ fontWeight: 'bold', letterSpacing: '2px' }}>Loading All Validators</text>
+      </div>
+  </div>
+) : (
           <div className="d-flex flex-wrap">
             {validators.map((validator, index) => (
               <div key={index} className="card m-2" style={{ width: '18rem' }}>
