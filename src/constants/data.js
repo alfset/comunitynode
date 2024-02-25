@@ -28,6 +28,7 @@ const ServicesData = [
         link: '#',
         itemclass: 'blight',
         imgURL: images.services01,
+        description: "This is a detailed description of Service 1. Here you can include more about what the service offers, its benefits, and why users might choose this service.",
     },
     {
         titleone: 'Echosystem Growing',
@@ -35,11 +36,13 @@ const ServicesData = [
         link: '#',
         itemclass: 'bgreen',
         imgURL: images.services02,
+        description: "This is a detailed description of Service 1. Here you can include more about what the service offers, its benefits, and why users might choose this service.",
     },
     {
         titleone: 'Consistent Performance',
         itemclass: 'bdark',
         imgURL: images.services03,
+        description: "This is a detailed description of Service 1. Here you can include more about what the service offers, its benefits, and why users might choose this service.",
     },
     {
         titleone: 'Support Restaking',
@@ -47,6 +50,7 @@ const ServicesData = [
         link: '#',
         itemclass: 'blight',
         imgURL: images.services04,
+        description: "This is a detailed description of Service 1. Here you can include more about what the service offers, its benefits, and why users might choose this service.",
     },
     {
         titleone: 'Transparent ',
@@ -54,6 +58,7 @@ const ServicesData = [
         link: '#',
         itemclass: 'bgreen',
         imgURL: images.services05,
+        description: "This is a detailed description of Service 1. Here you can include more about what the service offers, its benefits, and why users might choose this service.",
     },
     {
         titleone: 'Competitive Fees',
@@ -61,6 +66,7 @@ const ServicesData = [
         link: '#',
         itemclass: 'bdark',
         imgURL: images.services06,
+        description: "This is a detailed description of Service 1. Here you can include more about what the service offers, its benefits, and why users might choose this service.",
     },
 ]
 const CaseStudies = [

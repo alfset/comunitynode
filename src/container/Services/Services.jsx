@@ -1,32 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Headings } from '../../components';
 import { data } from '../../constants';
-import { BsFillArrowUpRightCircleFill } from 'react-icons/bs';
-
 import './Services.css';
 
-
 const Services = () => {
+  const [visibleIndex, setVisibleIndex] = useState(null);
+
+  const toggleVisibility = (index) => {
+    setVisibleIndex(visibleIndex === index ? null : index);
+  };
+
   return (
     <div id="services" className="d-block pt-md-4">
-      <Headings title="Welcome To Comunity Node," />
-      <text>Your Trusted Partner in the POS Blockchain Ecosystem! ,we are deeply committed to the security, performance, and growth of the network. Our validator node is designed for delegators who seek not only to earn competitive staking rewards but also to contribute to the robustness and decentralization of the Blockchain ecosystem.</text>
+      <Headings title="Welcome To Community Node," />
+      <p>Your Trusted Partner in the POS Blockchain Ecosystem! We are deeply committed to the security, performance, and growth of the network. Our validator node is designed for delegators who seek not only to earn competitive staking rewards but also to contribute to the robustness and decentralization of the Blockchain ecosystem.</p>
       <div className="row">
-        {data.ServicesData.map(({ titleone, titletwo , itemclass, imgURL }, index) => (
-          <div className="col-lg-6 col-12" key={index}>
-          <div className={`row ${itemclass}`}>
-              <div className="col-md-6 box">
-             <div>  <span>{titleone} </span> 
-               <span>{titletwo}</span> 
-               </div>
+        {data.ServicesData.map(({ titleone, titletwo, itemclass, imgURL, description }, index) => (
+          <div className={`col-lg-6 col-12`} key={index}>
+            <div className={`card ${itemclass}`} onClick={() => toggleVisibility(index)}>
+              <div className="card-header d-flex align-items-center">
+                <img src={imgURL} alt={titleone} className="img-fluid img-services mr-3" style={{ maxWidth: '50px', marginRight: '15px' }} />
+                <div>
+                  <span>{titleone}</span> <span>{titletwo}</span>
+                </div>
               </div>
-              <div className="col-md-6 text-end"><img src={imgURL} alt={titleone} className="img-fluid img-services" /></div>
+              {visibleIndex === index && (
+                <div className="card-body">
+                  <p>{description}</p> {/* Display the description here */}
+                </div>
+              )}
             </div>
           </div>
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Services
+export default Services;
