@@ -54,25 +54,20 @@ const StakingPage = () => {
 
   const connectOrDisconnectKeplr = async () => {
     if (walletAddress) {
-      // If already connected, disconnect by clearing the wallet address
       setWalletAddress('');
       alert("Disconnected from Keplr wallet.");
       return;
     }
-
-    // Attempt to connect if not already connected
     if (!window.keplr) {
       alert("Please install the Keplr extension.");
       return;
     }
 
-    const chainId = "planq_7070-2"; // Replace with your actual chain ID
+    const chainId = "planq_7070-2"; 
     try {
-      await window.keplr.experimentalSuggestChain({
-        // Chain configuration details
+      await window.keplr.experimentalSuggestChain({ 
         chainId: chainId,
         chainName: "Planq",
-        // Add other necessary details
       });
 
       await window.keplr.enable(chainId);
@@ -98,7 +93,7 @@ const StakingPage = () => {
     try {
       const response = await fetch('https://rest.planq.network/cosmos/staking/v1beta1/validators?status=BOND_STATUS_BONDED');
       const data = await response.json();
-      const validatorsData = data.validators || []; // Fallback to an empty array if undefined
+      const validatorsData = data.validators || []; 
       setValidators(validatorsData);
     } catch (error) {
       console.error('Failed to fetch validators:', error);
@@ -121,7 +116,7 @@ const StakingPage = () => {
       return;
     }
   
-    const chainId = "planq_7070-2"; // Replace with your actual chain ID
+    const chainId = "planq_7070-2"; 
   
     try {
       await window.keplr.enable(chainId);
@@ -129,16 +124,14 @@ const StakingPage = () => {
       const accounts = await offlineSigner.getAccounts();
   
       const stargateClient = await SigningStargateClient.connectWithSigner(
-        "https://rpc.planq.network", // This RPC endpoint should be replaced with the actual RPC endpoint of the Planq network
+        "https://rpc.planq.network",
         offlineSigner
       );
-  
-      // Convert the amount to the base unit of the token
-      const amountInBaseUnit = coins(amount, "aplanq"); // Replace "uplanq" with the denom of your token
+      const amountInBaseUnit = coins(amount, "aplanq"); 
   
       const fee = {
-        amount: coins(5000, "aplanq"), // The fee associated with the transaction
-        gas: "200000", // The gas limit
+        amount: coins(5000, "aplanq"), 
+        gas: "200000", 
       };
   
       const result = await stargateClient.delegateTokens(
@@ -167,7 +160,7 @@ const StakingPage = () => {
     }
   };
   const closeModal = () => {
-    setShowModal(false); // Hide the delegate modal
+    setShowModal(false);
   };
 
 
@@ -178,7 +171,7 @@ const StakingPage = () => {
             
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2>Choose Your Trusted Validator Service</h2>
-        <button variant="outline-secondary" size="sm" className="ml-2 p-0" style={{fontSize: '0.75rem', lineHeight: '1.5', height: 'auto', width: 'auto'}} onClick={connectOrDisconnectKeplr} className="btn btn-primary btn-sm">
+        <button variant="outline-secondary" size="sm" className="ml-2 p-0" style={{fontSize: '0.75rem', lineHeight: '1.5', height: 'auto', width: 'auto'}} onClick={connectOrDisconnectKeplr} className="btn btn-connect btn-sm">
           {walletAddress ? `Disconnect (${formatAddress(walletAddress)})` : "Connect to Keplr Wallet"}
         </button>
       </div>
@@ -228,7 +221,7 @@ const StakingPage = () => {
                     </button>
                   ) : (
                     <button className="btn btn-primary btn-sm" onClick={() => connectOrDisconnectKeplr()}>
-                      Delegate
+                      Connect Wallet
                     </button>
                   )}
                 </td>
