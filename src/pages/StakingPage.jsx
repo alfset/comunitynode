@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button, Form } from 'react-bootstrap'; 
 import { DirectSecp256k1HdWallet, SigningStargateClient, coins } from '@cosmjs/stargate';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { assertIsBroadcastTxSuccess } from '@cosmjs/stargate';
 import loadingGif from '../assets/animate1.gif';
 
@@ -51,40 +52,45 @@ const StakingPage = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentValidator, setCurrentValidator] = useState('');
 
-  const connectKeplr = async () => {
+  const connectOrDisconnectKeplr = async () => {
+    if (walletAddress) {
+      // If already connected, disconnect by clearing the wallet address
+      setWalletAddress('');
+      alert("Disconnected from Keplr wallet.");
+      return;
+    }
+
+    // Attempt to connect if not already connected
     if (!window.keplr) {
       alert("Please install the Keplr extension.");
       return;
     }
-  
+
     const chainId = "planq_7070-2"; // Replace with your actual chain ID
-  
     try {
-      // Suggest the chain to Keplr (if not already known)
       await window.keplr.experimentalSuggestChain({
-        // Chain configuration details:
+        // Chain configuration details
         chainId: chainId,
         chainName: "Planq",
-        rpc: "https://rpc.planq.network",
-        rest: "https://rest.planq.network",
+        // Add other necessary details
       });
-  
+
       await window.keplr.enable(chainId);
-  
       const offlineSigner = window.getOfflineSigner(chainId);
       const accounts = await offlineSigner.getAccounts();
-  
       setWalletAddress(accounts[0].address);
-      console.log("Connected wallet address:", accounts[0].address);
-      
-      fetchValidators();
     } catch (error) {
       console.error("Failed to connect to the Keplr wallet:", error);
       alert("Could not connect to the Keplr wallet. See console for details.");
     }
   };
+  const formatAddress = (address) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  };
+
 
   useEffect(() => {
+    fetchValidators();
   
   }, []);
   const fetchValidators = async () => {
@@ -100,6 +106,9 @@ const StakingPage = () => {
       setIsLoadingValidators(false);
     }
   
+  };
+  const formatValidatorAddress = (address) => {
+    return `${address.slice(0, 6)}...${address.slice(-3)}`;
   };
   const handleDelegate = async (validatorAddress, amount) => {
     if (!window.keplr) {
@@ -148,9 +157,14 @@ const StakingPage = () => {
     }
   };
 
-  const openModal = (validatorAddress) => {
-    setCurrentValidator(validatorAddress); // Set the current validator address for delegation
-    setShowModal(true); // Show the delegate modal
+  const openModalOrConnectWallet = (validatorAddress) => {
+    if (walletAddress) {
+
+      setCurrentValidator(validatorAddress);
+      setShowModal(true);
+    } else {
+      connectOrDisconnectKeplr();
+    }
   };
   const closeModal = () => {
     setShowModal(false); // Hide the delegate modal
@@ -161,19 +175,24 @@ const StakingPage = () => {
   return (
     <div className="container mt-4">
       <h1>Staking Page</h1>
+            
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2>Choose Your Trusted Validator Service</h2>
+        <button variant="outline-secondary" size="sm" className="ml-2 p-0" style={{fontSize: '0.75rem', lineHeight: '1.5', height: 'auto', width: 'auto'}} onClick={connectOrDisconnectKeplr} className="btn btn-primary btn-sm">
+          {walletAddress ? `Disconnect (${formatAddress(walletAddress)})` : "Connect to Keplr Wallet"}
+        </button>
+      </div>
       <p>Connect to Keplr Wallet to proceed with staking.</p>
+
+      
       <DelegateModal
         show={showModal}
         handleClose={closeModal}
         handleDelegate={handleDelegate}
         validatorAddress={currentValidator}
       />
-      <button onClick={connectKeplr} className="btn btn-primary btn-sm">
-        {walletAddress ? `Connected: ${walletAddress.substring(0, 6)}...${walletAddress.substring(walletAddress.length - 4)}` : "Connect to Keplr Wallet"}
-      </button>
 
       <div className="mt-4">
-        <h2>Choose Your Trusted Validator Service</h2>
         {isLoadingValidators ? (
           <div className="d-flex flex-column align-items-center">
             <img src={loadingGif} alt="Loading..." style={{ width: '250px', height: '250px' }} />
@@ -181,31 +200,42 @@ const StakingPage = () => {
           </div>
         ) : (
           <table className="table">
-            <thead>
-              <tr>
-                <th scope="col">Moniker</th>
-                <th scope="col">Address</th>
-                <th scope="col">Staked Amount (PLQ)</th>
-                <th scope="col">Security Contact</th>
-                <th scope="col">Actions</th> {/* Add a column for actions */}
-              </tr>
-            </thead>
-            <tbody>
-              {validators.map((validator, index) => (
-                <tr key={index}>
-                  <td>{validator.description.moniker}</td>
-                  <td>{validator.operator_address}</td>
-                  <td>{validator.tokens / 1000000000000000000}</td>
-                  <td>{validator.description.security_contact || 'N/A'}</td>
-                  <td>
-                  <button className="btn btn-success btn-sm" onClick={() => openModal(validator.operator_address)}>
-  Delegate
-</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+    <thead>
+      <tr>
+        <th scope="col">Moniker</th>
+        <th scope="col">Address</th>
+        <th scope="col">Staked Amount (PLQ)</th>
+        <th scope="col">Security Contact</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {validators.map((validator, index) => (
+        <tr key={index}>
+          <td>{validator.description.moniker}</td>
+          <td className="d-flex align-items-center">
+                      {formatValidatorAddress(validator.operator_address)}
+                      <CopyToClipboard text={validator.operator_address}>
+                        <Button variant="outline-secondary" size="sm" className="ml-2 p-0" style={{fontSize: '0.75rem', lineHeight: '1.5', height: 'auto', width: 'auto'}}>Copy</Button>
+                      </CopyToClipboard>
+                    </td>
+          <td>{validator.tokens / 1000000000000000000}</td>
+          <td>{validator.description.security_contact || 'N/A'}</td>
+          <td>
+                  {walletAddress ? (
+                    <button className="btn btn-success btn-sm" onClick={() => openModalOrConnectWallet(validator.operator_address)}>
+                      Delegate
+                    </button>
+                  ) : (
+                    <button className="btn btn-primary btn-sm" onClick={() => connectOrDisconnectKeplr()}>
+                      Delegate
+                    </button>
+                  )}
+                </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
         )}
       </div>
     </div>
