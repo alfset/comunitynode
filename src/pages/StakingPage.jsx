@@ -1,13 +1,56 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Modal, Button, Form } from 'react-bootstrap'; 
 import { DirectSecp256k1HdWallet, SigningStargateClient, coins } from '@cosmjs/stargate';
+import { assertIsBroadcastTxSuccess } from '@cosmjs/stargate';
 import loadingGif from '../assets/animate1.gif';
+
+const DelegateModal = ({ show, handleClose, handleDelegate, validatorAddress }) => {
+  const [amount, setAmount] = useState('');
+
+  const onSubmit = () => {
+    handleDelegate(validatorAddress, amount);
+    handleClose(); 
+  };
+  return (
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Delegate Tokens</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Staking Amount</Form.Label>
+            <Form.Control
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              placeholder="Enter amount to stake"
+            />
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={onSubmit}>
+          Delegate
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
 
 
 const StakingPage = () => {
   const [walletAddress, setWalletAddress] = useState('');
   const [validators, setValidators] = useState([]);
   const [isLoadingValidators, setIsLoadingValidators] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [currentValidator, setCurrentValidator] = useState('');
+
   const connectKeplr = async () => {
     if (!window.keplr) {
       alert("Please install the Keplr extension.");
@@ -58,32 +101,46 @@ const StakingPage = () => {
     }
   
   };
-  const handleDelegate = async (validatorAddress) => {
+  const handleDelegate = async (validatorAddress, amount) => {
+    if (!window.keplr) {
+      alert("Please install the Keplr extension.");
+      return;
+    }
+  
     if (!walletAddress) {
       alert("Please connect your Keplr wallet first.");
       return;
     }
-
-    const chainId = "planq_7070-2"; // Replace with the actual chain ID of the Planq network
+  
+    const chainId = "planq_7070-2"; // Replace with your actual chain ID
+  
     try {
       await window.keplr.enable(chainId);
       const offlineSigner = window.getOfflineSigner(chainId);
       const accounts = await offlineSigner.getAccounts();
-
-      const client = await SigningStargateClient.connectWithSigner(
+  
+      const stargateClient = await SigningStargateClient.connectWithSigner(
         "https://rpc.planq.network", // This RPC endpoint should be replaced with the actual RPC endpoint of the Planq network
         offlineSigner
       );
-
-      const amount = coins(1000000, "uplanq"); // Replace "1000000" with the amount you want to delegate, and "uplanq" with the correct denom
+  
+      // Convert the amount to the base unit of the token
+      const amountInBaseUnit = coins(amount, "aplanq"); // Replace "uplanq" with the denom of your token
+  
       const fee = {
-        amount: coins(5000, "uplanq"), // Adjust the fee as necessary
-        gas: "200000", // Adjust the gas limit as necessary
+        amount: coins(5000, "aplanq"), // The fee associated with the transaction
+        gas: "200000", // The gas limit
       };
-
-      const result = await client.delegateTokens(walletAddress, validatorAddress, amount, fee);
-      console.log("Delegation transaction result:", result);
-
+  
+      const result = await stargateClient.delegateTokens(
+        walletAddress,
+        validatorAddress,
+        amountInBaseUnit,
+        fee
+      );
+  
+      assertIsBroadcastTxSuccess(result);
+  
       alert("Delegation successful!");
     } catch (error) {
       console.error("Failed to delegate tokens:", error);
@@ -91,10 +148,26 @@ const StakingPage = () => {
     }
   };
 
+  const openModal = (validatorAddress) => {
+    setCurrentValidator(validatorAddress); // Set the current validator address for delegation
+    setShowModal(true); // Show the delegate modal
+  };
+  const closeModal = () => {
+    setShowModal(false); // Hide the delegate modal
+  };
+
+
+
   return (
     <div className="container mt-4">
       <h1>Staking Page</h1>
       <p>Connect to Keplr Wallet to proceed with staking.</p>
+      <DelegateModal
+        show={showModal}
+        handleClose={closeModal}
+        handleDelegate={handleDelegate}
+        validatorAddress={currentValidator}
+      />
       <button onClick={connectKeplr} className="btn btn-primary btn-sm">
         {walletAddress ? `Connected: ${walletAddress.substring(0, 6)}...${walletAddress.substring(walletAddress.length - 4)}` : "Connect to Keplr Wallet"}
       </button>
@@ -125,10 +198,9 @@ const StakingPage = () => {
                   <td>{validator.tokens / 1000000000000000000}</td>
                   <td>{validator.description.security_contact || 'N/A'}</td>
                   <td>
-                    {/* Delegate button for each validator */}
-                    <button className="btn btn-success btn-sm" onClick={() => handleDelegate(validator.operator_address)}>
-                      Delegate
-                    </button>
+                  <button className="btn btn-success btn-sm" onClick={() => openModal(validator.operator_address)}>
+  Delegate
+</button>
                   </td>
                 </tr>
               ))}
