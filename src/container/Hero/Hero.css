@@ -20,7 +20,7 @@
     background: transparent;  
 }
 .green-card {
-    background-color: #B9FF66; /* Or use a specific green shade like #00ff00 */
+    background-color: #fcfdfb00; /* Or use a specific green shade like #00ff00 */
   }
 
   @keyframes fadeIn {

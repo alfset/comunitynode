@@ -6,7 +6,7 @@ import './Process.css';
 
 const Process = () => {
   return (
-    <div className="section-padding" id="process">x
+    <div className="section-padding" id="process">
       <Headings title="Our Service " text="Support for Comunity and developer" />
 
       <Accordion>
