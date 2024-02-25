@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { DirectSecp256k1HdWallet, SigningStargateClient, coins } from '@cosmjs/stargate';
 import loadingGif from '../assets/animate1.gif';
 
 
@@ -39,6 +40,10 @@ const StakingPage = () => {
       alert("Could not connect to the Keplr wallet. See console for details.");
     }
   };
+
+  useEffect(() => {
+  
+  }, []);
   const fetchValidators = async () => {
     setIsLoadingValidators(true);
     try {
@@ -51,42 +56,84 @@ const StakingPage = () => {
     } finally {
       setIsLoadingValidators(false);
     }
+  
+  };
+  const handleDelegate = async (validatorAddress) => {
+    if (!walletAddress) {
+      alert("Please connect your Keplr wallet first.");
+      return;
+    }
+
+    const chainId = "planq_7070-2"; // Replace with the actual chain ID of the Planq network
+    try {
+      await window.keplr.enable(chainId);
+      const offlineSigner = window.getOfflineSigner(chainId);
+      const accounts = await offlineSigner.getAccounts();
+
+      const client = await SigningStargateClient.connectWithSigner(
+        "https://rpc.planq.network", // This RPC endpoint should be replaced with the actual RPC endpoint of the Planq network
+        offlineSigner
+      );
+
+      const amount = coins(1000000, "uplanq"); // Replace "1000000" with the amount you want to delegate, and "uplanq" with the correct denom
+      const fee = {
+        amount: coins(5000, "uplanq"), // Adjust the fee as necessary
+        gas: "200000", // Adjust the gas limit as necessary
+      };
+
+      const result = await client.delegateTokens(walletAddress, validatorAddress, amount, fee);
+      console.log("Delegation transaction result:", result);
+
+      alert("Delegation successful!");
+    } catch (error) {
+      console.error("Failed to delegate tokens:", error);
+      alert("Delegation failed. See console for details.");
+    }
   };
 
-  useEffect(() => {
-  
-  }, []);
-
   return (
-    <div>
+    <div className="container mt-4">
       <h1>Staking Page</h1>
       <p>Connect to Keplr Wallet to proceed with staking.</p>
-      <button onClick={connectKeplr} className="btn btn-primary">
+      <button onClick={connectKeplr} className="btn btn-primary btn-sm">
         {walletAddress ? `Connected: ${walletAddress.substring(0, 6)}...${walletAddress.substring(walletAddress.length - 4)}` : "Connect to Keplr Wallet"}
       </button>
-  
+
       <div className="mt-4">
-        <h2>Active Validators</h2>
+        <h2>Choose Your Trusted Validator Service</h2>
         {isLoadingValidators ? (
-  <div className="d-flex justify-content-center">
-    <img src={loadingGif} alt="Loading..." />
-    <div className="d-flex justify-content-center">
-        <text style={{ fontWeight: 'bold', letterSpacing: '2px' }}>Loading All Validators</text>
-      </div>
-  </div>
-) : (
-          <div className="d-flex flex-wrap">
-            {validators.map((validator, index) => (
-              <div key={index} className="card m-2" style={{ width: '18rem' }}>
-                <div className="card-body">
-                  <h5 className="card-title">Moniker: {validator.description.moniker}</h5>
-                  <p className="card-text">Address: {validator.operator_address}</p>
-                  {/* Display the staked amount if available in the validator data */}
-                  <p className="card-text">Staked Amount: {validator.tokens/1000000000000000000} PLQ</p> {/* Adjust the property name as per your API */}
-                </div>
-              </div>
-            ))}
+          <div className="d-flex flex-column align-items-center">
+            <img src={loadingGif} alt="Loading..." style={{ width: '250px', height: '250px' }} />
+            <div className="mt-2" style={{ fontWeight: 'bold', letterSpacing: '2px' }}>Loading All Validators</div>
           </div>
+        ) : (
+          <table className="table">
+            <thead>
+              <tr>
+                <th scope="col">Moniker</th>
+                <th scope="col">Address</th>
+                <th scope="col">Staked Amount (PLQ)</th>
+                <th scope="col">Security Contact</th>
+                <th scope="col">Actions</th> {/* Add a column for actions */}
+              </tr>
+            </thead>
+            <tbody>
+              {validators.map((validator, index) => (
+                <tr key={index}>
+                  <td>{validator.description.moniker}</td>
+                  <td>{validator.operator_address}</td>
+                  <td>{validator.tokens / 1000000000000000000}</td>
+                  <td>{validator.description.security_contact || 'N/A'}</td>
+                  <td>
+                    {/* Delegate button for each validator */}
+                    <button className="btn btn-success btn-sm" onClick={() => handleDelegate(validator.operator_address)}>
+                      Delegate
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         )}
       </div>
     </div>
