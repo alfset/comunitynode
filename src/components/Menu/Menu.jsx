@@ -3,7 +3,8 @@ import { data } from '../../constants';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button'; // Import Button component
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 import './Menu.css';
 
 const Menu = () => {
@@ -16,6 +17,7 @@ const Menu = () => {
                     <Nav className="mx-auto">
                         {data.Menu.map((item, index) => (
                             <Nav.Link key={index} href={item.link}>{item.text}</Nav.Link>
+                            
                         ))}
                     </Nav>
                     <Nav>
