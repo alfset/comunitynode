@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Modal, Button, Form, Dropdown, Table } from 'react-bootstrap';
+import { Modal, Button, Form, Dropdown, Table, Card, Row, Col } from 'react-bootstrap';
 import loadingGif from '../assets/animate1.gif';
+import { StargateClient, SigningStargateClient, coins } from '@cosmjs/stargate';
 
 const chains = [
   { id: 'cosmoshub-4', name: 'Cosmos Hub', apiUrl: 'https://cosmos-rest.publicnode.com', denom: 'ATOM', variant: 'primary'  },
@@ -11,6 +12,33 @@ const chains = [
   { id: 'celestia', name: 'Celestia Network', apiUrl: 'https://api.lunaroasis.net', denom: 'TIA', variant: 'dark' },
 ];
 
+const DelegateModal = ({ show, onHide, onDelegate, validatorId, amount, setAmount }) => {
+  return (
+    <Modal show={show} onHide={onHide}>
+      <Modal.Header closeButton>
+        <Modal.Title>Delegate Stake</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group>
+            <Form.Label>Amount to Delegate</Form.Label>
+            <Form.Control 
+              type="number" 
+              placeholder="Enter amount" 
+              value={amount} 
+              onChange={(e) => setAmount(e.target.value)} 
+            />
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onHide}>Close</Button>
+        <Button variant="primary" onClick={() => onDelegate(validatorId, amount)}>Delegate</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
 const StakingPage = () => {
   const [selectedChain, setSelectedChain] = useState(chains[0].id);
   const [validators, setValidators] = useState([]);
@@ -18,7 +46,10 @@ const StakingPage = () => {
   const [walletConnected, setWalletConnected] = useState(false);
   const [showDelegationModal, setShowDelegationModal] = useState(false);
   const [delegationAmount, setDelegationAmount] = useState('');
-  const [selectedValidator, setSelectedValidator] = useState('');
+  const [currentValidatorId, setCurrentValidatorId] = useState(null);
+  const [totalStaked, setTotalStaked] = useState(100000); // Added for total staked amount
+  const [apr, setApr] = useState(0); // Added for APR
+  
 
   useEffect(() => {
     const chain = chains.find(chain => chain.id === selectedChain);
@@ -41,6 +72,14 @@ const StakingPage = () => {
     } catch (error) {
       console.error('Failed to connect to Keplr wallet:', error);
       alert('Could not connect to the Keplr wallet. See console for details.');
+    }
+  };
+  const handleDelegateClick = (validatorId) => {
+    if (!walletConnected) {
+      connectKeplrWallet();
+    } else {
+      setCurrentValidatorId(validatorId); // Corrected variable name
+      setShowDelegationModal(true); // Corrected state name
     }
   };
   const [walletAddress, setWalletAddress] = useState('');
@@ -101,77 +140,161 @@ const StakingPage = () => {
     }
   };
 
-  const handleDelegate = (validatorId) => {
+  const handleDelegate = async (validatorId, amount) => {
     if (!walletConnected) {
-      connectKeplrWallet();
+      console.log("Wallet is not connected.");
       return;
     }
-    console.log(`Delegating to validator: ${validatorId}`);
-    // Implement delegation logic here
+  
+    try {
+      // Assuming 'selectedChain' state holds the ID of the current chain selected by the user
+      const chain = chains.find(c => c.id === selectedChain);
+      if (!chain) {
+        console.error("Chain configuration not found.");
+        return;
+      }
+  
+      // Enabling Keplr for the selected chain
+      await window.keplr.enable(chain.id);
+  
+      // Getting offline signer for the chain from Keplr
+      const offlineSigner = window.getOfflineSigner(chain.id);
+  
+      // Getting accounts from the signer
+      const accounts = await offlineSigner.getAccounts();
+  
+      // Creating a SigningStargateClient
+      const client = await SigningStargateClient.connectWithSigner(chain.apiUrl, offlineSigner);
+  
+      // Preparing the amount in the correct format and denomination
+      // 'amount' should be a string representing the amount in the smallest unit of the token (e.g., uatom for ATOM)
+      const amountToDelegate = coins(Number(amount), chain.denom);
+  
+      // Delegating tokens
+      // 'validatorId' should be the address of the validator
+      const fee = { amount: coins(5000, chain.denom), gas: "200000" }; // Adjust the fee as necessary
+      const result = await client.delegateTokens(accounts[0].address, validatorId, amountToDelegate, fee);
+  
+      console.log("Delegation result:", result);
+      alert("Delegation successful!");
+  
+      // Closing the delegation modal after successful transaction
+      setShowDelegationModal(false);
+    } catch (error) {
+      console.error("Delegation error:", error);
+      alert("Delegation failed. Check console for details.");
+    }
   };
+
+  const hideDelegateModal = () => setShowDelegationModal(false);
 
   return (
     <div className="container mt-4">
-      <h1>Staking Page</h1>
-      <Button variant="outline-secondary" size="sm" className="ml-2 p-0" style={{fontSize: '0.75rem', lineHeight: '1.5', height: 'auto', width: 'auto'}} onClick={connectKeplrWallet} className="mb-3">
-  {walletConnected ? `Connected: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : 'Connect Keplr Wallet'}
-</Button>
-<Dropdown className="mb-4">
-  <Dropdown.Toggle 
-    variant={chains.find(chain => chain.id === selectedChain)?.variant || 'secondary'} 
-    size="sm" 
-    className="ml-2 p-0" 
-    style={{fontSize: '1rem', lineHeight: '2', height: 'auto', width: 'auto'}}
-  >
-    {chains.find(chain => chain.id === selectedChain).name}
-  </Dropdown.Toggle>
-  <Dropdown.Menu>
-    {chains.map(chain => (
-      <Dropdown.Item key={chain.id} onClick={() => setSelectedChain(chain.id)}>
-        {chain.name}
-      </Dropdown.Item>
-    ))}
-  </Dropdown.Menu>
-</Dropdown>
+    <Row className="align-items-center mb-4">
+      <Col>
+      </Col>
+      <Col xs={12} md={2} className="ml-auto"> {/* Adjust grid columns as needed */}
+        <Card>
+          <Card.Body>
+            <Card.Title>Total Staked</Card.Title>
+            <Card.Text>
+              {totalStaked} {chains.find(chain => chain.id === selectedChain)?.denom.toUpperCase()}
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col xs={12} md={2} className="ml-auto"> {/* Adjust grid columns as needed */}
+        <Card>
+          <Card.Body>
+            <Card.Title>Total Staked</Card.Title>
+            <Card.Text>
+              {totalStaked} {chains.find(chain => chain.id === selectedChain)?.denom.toUpperCase()}
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col xs={12} md={2} className="ml-auto"> {/* Adjust grid columns as needed */}
+        <Card>
+          <Card.Body>
+            <Card.Title>Total Staked</Card.Title>
+            <Card.Text>
+              {totalStaked} {chains.find(chain => chain.id === selectedChain)?.denom.toUpperCase()}
+            </Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col>
+      <Dropdown className="mb-2">
+        <Dropdown.Toggle 
+          variant={chains.find(chain => chain.id === selectedChain)?.variant || 'secondary'} 
+          size="sm" 
+          className="ml-2 p-0" 
+          style={{fontSize: '1rem', lineHeight: '2', height: 'auto', width: 'auto'}}
+        >
+          {chains.find(chain => chain.id === selectedChain).name}
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          {chains.map(chain => (
+            <Dropdown.Item key={chain.id} onClick={() => setSelectedChain(chain.id)}>
+              {chain.name}
+            </Dropdown.Item>
+          ))}
+        </Dropdown.Menu>
+      </Dropdown>
+</Col>
+      <Button variant="outline-secondary" size="md" className="ml-2 p-0" style={{ fontSize: '1rem', lineHeight: '1.5', height: 'auto', width: 'auto' }} onClick={connectKeplrWallet}>
+          {walletConnected ? `Connected: ${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : 'Connect Keplr Wallet'}
+        </Button>
+    </Row>
+    <h1>Staking Page</h1>
       <div>
         <h2>Validators</h2>
         {isLoading ? (
           <div className="d-flex flex-column align-items-center">
-          <img src={loadingGif} alt="Loading..." style={{ width: '250px', height: '250px' }} />
-          <div className="mt-2" style={{ fontWeight: 'bold', letterSpacing: '2px' }}>Loading All Validators</div>
-        </div>
-      ) : (
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Moniker</th>
-                <th>Validator Address</th>
-                <th>Staked Amount</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-  {validators.map((validator) => (
-    <tr key={validator.id}>
-      <td>
-        {validator.imageUrl ? (
-          <img src={validator.imageUrl} alt={validator.moniker} style={{ width: '50px', height: '50px' }} />
+            <img src={loadingGif} alt="Loading..." style={{ width: '250px', height: '250px' }} />
+            <div className="mt-1" style={{ fontWeight: 'bold', letterSpacing: '2px' }}>Loading All Validators</div>
+          </div>
         ) : (
-          'No image'
-        )}
-      </td>
-      <td>{validator.moniker}</td>
-      <td>{validator.id}</td>
-      <td>{formatStakedAmount(validator.tokens)}</td>
-      <td>
-        <Button variant="success" size="sm" onClick={() => handleDelegate(validator.id)}>
-          Delegate
-        </Button>
-      </td>
-    </tr>
-  ))}
-</tbody>
-          </Table>
+          <>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>iD</th>
+                  <th>Moniker</th>
+                  <th>Validator Address</th>
+                  <th>Staked Amount</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {validators.map((validator) => (
+                  <tr key={validator.id}>
+                    <td>
+                      {validator.imageUrl ? (
+                        <img src={validator.imageUrl} alt={validator.moniker} style={{ width: '50px', height: '50px' }} />
+                      ) : 'No image'}
+                    </td>
+                    <td>{validator.moniker}</td>
+                    <td>{validator.id}</td>
+                    <td>{formatStakedAmount(validator.tokens)}</td>
+                    <td>
+                      <Button variant="success" size="sm" onClick={() => handleDelegateClick(validator.id)}>
+                        Delegate
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+            <DelegateModal
+              show={showDelegationModal}
+              onHide={() => setShowDelegationModal(false)}
+              onDelegate={(validatorId, amount) => handleDelegate(validatorId, amount)}
+              validatorId={currentValidatorId}
+              amount={delegationAmount}
+              setAmount={setDelegationAmount}
+            />
+          </>
         )}
       </div>
     </div>
