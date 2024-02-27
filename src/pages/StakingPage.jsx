@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button, Form, Dropdown, Table, Card, Row, Col } from 'react-bootstrap';
 import loadingGif from '../assets/animate1.gif';
 import { StargateClient, SigningStargateClient, coins, QueryClient } from '@cosmjs/stargate';
-import BigNumber from 'bignumber.js';
+import { BigNumber } from 'bignumber.js';
 
 const chains = [
   { id: 'cosmoshub-4', name: 'Cosmos Hub', apiUrl: 'https://cosmos-rest.publicnode.com', denom: 'uatom', variant: 'primary'  },
