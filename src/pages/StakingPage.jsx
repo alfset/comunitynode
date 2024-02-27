@@ -84,7 +84,7 @@ const StakingPage = () => {
       'cosmoshub-4': 'cosmos',
       'osmosis-1': 'osmosis',
       'akashnet-2': 'akash-network',
-      'planq_7070-2': 'planq-network',
+      'planq_7070-2': 'planq',
       'celestia': 'celestia-network ',
       // Add other mappings as needed
     };
