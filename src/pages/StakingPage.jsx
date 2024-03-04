@@ -11,6 +11,7 @@ const chains = [
   { id: 'akashnet-2', name: 'Akash Network', apiUrl: 'https://akash-api.polkachu.com', denom: 'uakt', variant: 'warning' },
   { id: 'planq_7070-2', name: 'Planq Network', apiUrl: 'https://rest.planq.network', denom: 'aplanq', variant: 'info' },
   { id: 'celestia', name: 'Celestia Network', apiUrl: 'https://api.lunaroasis.net', denom: 'utia', variant: 'dark' },
+  { id: 'Oraichain', name: 'oraichain Network', apiUrl: 'https://api.oraichain.comunitynode.my.id', denom: 'orai', variant: 'success' },
 ];
 const formatBalance = (balance, denom) => {
   const conversionFactors = {
@@ -18,14 +19,16 @@ const formatBalance = (balance, denom) => {
     'uosmo': 1e6, // Micro units for Osmosis
     'uakt': 1e6, // Micro units for Akash Network
     'aplanq': 1e18, // For Planq Network
-    'utia': 1e6, // Micro units for Celestia Network
+    'utia': 1e6,
+    'orai': 1e6,// Micro units for Celestia Network
   };
   const denomDisplayNames = {
     'uatom': 'ATOM',
     'uosmo': 'OSMO', // Display name for Osmosis
     'uakt': 'AKT',
-    'aplanq': 'APLANQ',
-    'utia': 'UTIA',
+    'aplanq': 'PLQ',
+    'utia': 'TIA',
+    'orai': 'Orai',
   };
 
   const conversionFactor = conversionFactors[denom] || 1e6;
