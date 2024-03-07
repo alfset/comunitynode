@@ -5,6 +5,8 @@ import Process from './Process/Process';
 import Services from './Services/Services';
 import Team from './Team/Team';
 import CTA from './CTA/CTA';
+import CommentForm from './Comment/CommentForm';
+import CommentList from './Comment/CommentList';
 
 export {
     CaseStudies,
@@ -14,4 +16,6 @@ export {
     Process,
     Services,
     Team,
+    CommentForm,
+    CommentList
 }

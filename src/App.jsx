@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage'; 
 import StakingPage from './pages/StakingPage'; 
-import { SpeedInsights } from "@vercel/speed-insights/react"
+import Blogs from './pages/Blogs';
+
 
 
 const App = () => {
@@ -11,6 +12,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/staking" element={<StakingPage />} />
+        <Route path="/blog" element={<Blogs />} />
       </Routes>
     </Router>
   );

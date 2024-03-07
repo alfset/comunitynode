@@ -11,7 +11,7 @@ const chains = [
   { id: 'akashnet-2', name: 'Akash Network', apiUrl: 'https://akash-api.polkachu.com', denom: 'uakt', variant: 'warning' },
   { id: 'planq_7070-2', name: 'Planq Network', apiUrl: 'https://rest.planq.network', denom: 'aplanq', variant: 'info' },
   { id: 'celestia', name: 'Celestia Network', apiUrl: 'https://api.lunaroasis.net', denom: 'utia', variant: 'dark' },
-  { id: 'Oraichain', name: 'oraichain Network', apiUrl: 'https://api.oraichain.comunitynode.my.id', denom: 'orai', variant: 'success' },
+  { id: 'Oraichain', name: 'oraichain Network', apiUrl: 'https://rest.cosmos.directory/oraichain', denom: 'orai', variant: 'success' },
 ];
 const formatBalance = (balance, denom) => {
   const conversionFactors = {
@@ -89,6 +89,7 @@ const StakingPage = () => {
       'akashnet-2': 'akash-network',
       'planq_7070-2': 'planq',
       'celestia': 'celestia-network ',
+      'Oraichain': 'oraichain-token',
       // Add other mappings as needed
     };
     const coinId = chainToCoinId[chainId];

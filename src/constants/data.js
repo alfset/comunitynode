@@ -14,8 +14,8 @@ const Menu = [
         link: '',
     },
     {
-        text: 'Blog',
-        link: 'Latest Post',
+        text: 'Proposal',
+        link: 'blog',
     },
 ];
 const ServicesData = [
