@@ -40,15 +40,15 @@
 
   .running-logos {
     display: block;
-    animation: runningLogos 20s linear infinite;
+    animation: runningLogos 30s linear infinite;
   }
   
   @keyframes runningLogos {
     from {
-      transform: translateX(0);
+      transform: translateX(100%);
     }
     to {
-      transform: translateX(-50%); /* Moves the logos to the left by half of their total width */
+      transform: translateX(-150%); /* Moves the logos to the left by half of their total width */
     }
   }
   .supported-network-title {
