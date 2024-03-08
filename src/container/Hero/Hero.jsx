@@ -4,7 +4,7 @@ import { IconScroll } from '../../components';
 import Card from 'react-bootstrap/Card';
 import './Hero.css';
 
-const logos = ["logo01", "logo02", "logo03", "logo04", "logo05", "logo06"];
+const logos = ['atom', 'akash', 'osmosis', 'planq', 'celestia', 'oraichain'];
 
 const Hero = () => {
   const stats = {

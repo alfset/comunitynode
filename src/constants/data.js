@@ -2,16 +2,16 @@ import images from './images';
 
 const Menu = [
     {
-        text: 'Testnet Labs',
-        link: '',
+        text: 'Service',
+        link: 'https://github.com/alfset/Validator-tools',
     },
     {
-        text: 'Services',
-        link: '#use-cases',
+        text: 'Staking',
+        link: '#staking',
     },
     {
-        text: 'Guide',
-        link: '',
+        text: 'Transfer IBC',
+        link: 'transfer',
     },
     {
         text: 'Proposal',
