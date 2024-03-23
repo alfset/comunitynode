@@ -7,7 +7,7 @@ const Menu = [
     },
     {
         text: 'Staking',
-        link: '#staking',
+        link: 'staking',
     },
     {
         text: 'Transfer IBC',
@@ -16,6 +16,10 @@ const Menu = [
     {
         text: 'Proposal',
         link: 'blog',
+    },
+    {
+        text: 'Multisig',
+        link: 'https://multisig.comunitynode.my.id',
     },
 ];
 const ServicesData = [
