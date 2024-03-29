@@ -5,6 +5,7 @@ import Process from './Process/Process';
 import Services from './Services/Services';
 import Team from './Team/Team';
 import CTA from './CTA/CTA';
+import Dapps from './DApps/Dapps';
 import CommentForm from './Comment/CommentForm';
 import CommentList from './Comment/CommentList';
 
@@ -17,5 +18,6 @@ export {
     Services,
     Team,
     CommentForm,
-    CommentList
+    CommentList,
+    Dapps
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { CaseStudies, Footer, Hero, Process, Services, Team, CTA } from '../container';
+import { CaseStudies, Footer, Hero, Process, Services, Team, CTA, Dapps } from '../container';
 import { Menu } from '../components';
 import Loading from '../Loading'; // Make sure this path is correct
 
@@ -26,6 +26,7 @@ const HomePage = () => {
           <CTA />
           <CaseStudies />
           <Process />
+          <Dapps />
           <Team />
           <Footer />
         </div>    

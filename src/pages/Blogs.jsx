@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Blogs.css'; // Assuming you have a Blogs.css file for your styles
 
 const Blogs = () => {
   const [proposals, setProposals] = useState([]);
-  const [comments, setComments] = useState({}); // Stores comments by proposal ID
-  const [commentInputs, setCommentInputs] = useState({}); // Stores current comment input by proposal ID
-  const [selectedChain, setSelectedChain] = useState('cosmos'); // Default selection
+  const [comments, setComments] = useState({});
+  const [commentInputs, setCommentInputs] = useState({});
+  const [selectedChain, setSelectedChain] = useState('cosmos');
 
   const endpoints = {
     cosmos: 'https://cosmos-rest.publicnode.com/cosmos/gov/v1beta1/proposals',
@@ -16,20 +17,20 @@ const Blogs = () => {
     akash: 'https://akash-api.polkachu.com/cosmos/gov/v1beta1/proposals',
   };
 
-  const fetchGovernanceProposalsFromChain = async () => {
-    try {
-      const response = await axios.get(endpoints[selectedChain]);
-      if (response.data && response.data.proposals) {
-        const activeProposals = response.data.proposals.filter(proposal => proposal.status === "PROPOSAL_STATUS_VOTING_PERIOD");
-        setProposals(activeProposals);
-      }
-    } catch (error) {
-      console.error(`Error fetching governance proposals from ${selectedChain}:`, error);
-      setProposals([]);
-    }
-  };
-
   useEffect(() => {
+    const fetchGovernanceProposalsFromChain = async () => {
+      try {
+        const response = await axios.get(endpoints[selectedChain]);
+        if (response.data && response.data.proposals) {
+          const activeProposals = response.data.proposals.filter(proposal => proposal.status === "PROPOSAL_STATUS_VOTING_PERIOD");
+          setProposals(activeProposals);
+        }
+      } catch (error) {
+        console.error(`Error fetching governance proposals from ${selectedChain}:`, error);
+        setProposals([]);
+      }
+    };
+
     fetchGovernanceProposalsFromChain();
   }, [selectedChain]);
 
@@ -54,7 +55,6 @@ const Blogs = () => {
       [proposalId]: [...(comments[proposalId] || []), commentInputs[proposalId]],
     };
     setComments(newComments);
-    // Clear the specific input field after submitting a comment
     setCommentInputs({
       ...commentInputs,
       [proposalId]: '',
@@ -74,10 +74,10 @@ const Blogs = () => {
           <option value="akash">Akash Network</option>
         </select>
       </div>
-      {proposals.length > 0 ? (
-        <ul>
-          {proposals.map((proposal, index) => (
-            <li key={index}>
+      <div className="proposals-container">
+        {proposals.length > 0 ? (
+          proposals.map((proposal, index) => (
+            <div className="proposal-card" key={index}>
               <h3>{proposal.content.title}</h3>
               <p>{proposal.content.description}</p>
               <input
@@ -92,12 +92,12 @@ const Blogs = () => {
                   <li key={idx}>{comment}</li>
                 ))}
               </ul>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No active proposals found for {selectedChain}.</p>
-      )}
+            </div>
+          ))
+        ) : (
+          <p>No active proposals found for {selectedChain}.</p>
+        )}
+      </div>
     </div>
   );
 };

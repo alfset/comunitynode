@@ -11,7 +11,8 @@ const chains = [
   { id: 'akashnet-2', name: 'Akash Network', apiUrl: 'https://akash-api.polkachu.com', denom: 'uakt', variant: 'warning' },
   { id: 'planq_7070-2', name: 'Planq Network', apiUrl: 'https://rest.planq.network', denom: 'aplanq', variant: 'info' },
   { id: 'celestia', name: 'Celestia Network', apiUrl: 'https://api.lunaroasis.net', denom: 'utia', variant: 'dark' },
-  { id: 'Oraichain', name: 'oraichain Network', apiUrl: 'https://rest.cosmos.directory/oraichain', denom: 'orai', variant: 'success' },
+  { id: 'oraichain', name: 'oraichain Network', apiUrl: 'https://rest.cosmos.directory/oraichain', denom: 'orai', variant: 'success' },
+  { id: 'cataclysm-1', name: 'Nibiru', apiUrl: 'https://nibiru-api.polkachu.com', denom: 'unibi', variant: 'danger' },
 ];
 const formatBalance = (balance, denom) => {
   const conversionFactors = {
@@ -20,6 +21,7 @@ const formatBalance = (balance, denom) => {
     'uakt': 1e6, // Micro units for Akash Network
     'aplanq': 1e18, // For Planq Network
     'utia': 1e6,
+    'unibi': 1e6,
     'orai': 1e6,// Micro units for Celestia Network
   };
   const denomDisplayNames = {
@@ -27,6 +29,7 @@ const formatBalance = (balance, denom) => {
     'uosmo': 'OSMO', // Display name for Osmosis
     'uakt': 'AKT',
     'aplanq': 'PLQ',
+    'unibi': 'NIBI',
     'utia': 'TIA',
     'orai': 'Orai',
   };
@@ -89,7 +92,8 @@ const StakingPage = () => {
       'akashnet-2': 'akash-network',
       'planq_7070-2': 'planq',
       'celestia': 'celestia-network ',
-      'Oraichain': 'oraichain-token',
+      'Oraichain': 'oraichain',
+      'cataclysm-1': 'nibiru'
       // Add other mappings as needed
     };
     const coinId = chainToCoinId[chainId];
@@ -118,6 +122,7 @@ const StakingPage = () => {
       'uakt': 1e6,
       'aplanq': 1e18,
       'utia': 1e6,
+      'unibi': 1e6,
     }[denom] || 1;
     return ((amount / conversionFactor) * usdPrice).toFixed(2);
   };

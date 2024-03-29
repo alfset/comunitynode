@@ -83,7 +83,7 @@ const CaseStudies = [
 
 const WorkingProcess = [
     {
-        title: 'Our Recent Web3 Developemnt',
+        title: 'Our Recent Web3 Development',
         description: 'Our previously Apps development, is Creating and managing Decentralized Exhange on Planq Foundation. Thanks to Planq Foundation team who belive and support us to build their Growth of ecosystem',
     },
     {
@@ -138,4 +138,31 @@ const Team = [
     },
 ];
 
-export default { Menu, CaseStudies, WorkingProcess, Team, ServicesData };
+const DApps = [
+    {
+      name: 'Physica Finance',
+      description: 'Decentral Exchange On Planq Network',
+      imageUrl: 'https://www.physica.finance/logo.png',
+      link: 'https://www.physica.finance',
+    },
+    {
+        name: 'Mobile Wallet',
+        description: 'Blockchain on your pocket',
+        imageUrl: 'https://www.physica.finance/logo.png',
+        link: 'https://www.physica.finance'
+    },
+    {
+        name: 'NPM Library',
+        description: 'library that we building',
+        imageUrl: 'https://s3.amazonaws.com/keybase_processed_uploads/6529e729081d586e71e4fa64fac33c05_360_360.jpg',
+        link: 'https://www.npmjs.com/package/tools-comunitynode'
+    },
+    {
+        name: 'Validator Tools',
+        description: 'tools for node and validator',
+        imageUrl: 'https://s3.amazonaws.com/keybase_processed_uploads/6529e729081d586e71e4fa64fac33c05_360_360.jpg',
+        link: 'https://github.com/alfset/Validator-tools'
+    },
+  ];
+
+export default { Menu, CaseStudies, WorkingProcess, Team, ServicesData, DApps };

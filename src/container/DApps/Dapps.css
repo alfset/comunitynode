@@ -1,0 +1,54 @@
+/* Dapps.css - Adjustments for hover effect on the card itself */
+
+.card-dapp {
+    background: #FFFFFF;
+    border: 1px solid #191A23;
+    box-shadow: 0px 5px 0px #191A23;
+    border-radius: 45px;
+    padding: 2rem 1rem 0rem;
+    margin: 0 .3rem 1.5rem;
+    min-height: 250px;
+    max-width: 390px;
+    text-align: center; /* Centering the content */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition for hover effects */
+    cursor: pointer; /* Indicates the card is clickable */
+  }
+  
+  .card-dapp:hover {
+    transform: translateY(-5px); /* Slightly raise the card on hover */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Increase shadow for emphasis */
+  }
+  
+  .card-dapp-img {
+    width: 70px; /* Adjusted as per your specification */
+    margin: 0 auto; /* Centering the image */
+    padding-bottom: 1rem; /* Space below the image */
+  }
+  
+  .card-dapp-title {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 1rem; /* Space after the title */
+  }
+  
+  .card-dapp-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23px;
+    padding: 0 .5rem;
+    margin-bottom: 2rem; /* Space at the bottom of the card */
+  }
+  
+  /* Since we're making the entire card clickable, we can simplify the link style */
+  .card-dapp-link {
+    text-decoration: none; /* Removing underline from the link */
+    color: inherit; /* Inherits the text color from parent */
+  }
+  
+  @media (max-width: 768px) {
+    .card-dapp {
+      margin: 1.5rem auto;
+      max-width: 460px; /* Ensuring cards adjust on smaller screens */
+    }
+  }
+  

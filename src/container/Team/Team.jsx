@@ -10,10 +10,10 @@ const Team = () => {
       <Headings title="Team" text="Meet the skilled and experienced team behind our Blockchain Journey" />
 
       <div className="row">
-        {data.Team.map(({ name, position, info, foto, linkedin }, index) => (
+        {data.Team.map(({ name, position, info, linkedin }, index) => (
           <div className="col-lg-4 col-md-6 col-12">
             <div className="card-team" key={index}>
-              <div className="card-team-header"> <img src={foto} alt={name} />
+              <div className="card-team-header">
                 <p> <span>{name}</span>
                   {position}</p>
                 <a href={linkedin} alt={`Linkedin + ${name}`} ><BsLinkedin /></a>

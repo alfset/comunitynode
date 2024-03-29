@@ -8,8 +8,8 @@ const logos = ['atom', 'akash', 'osmosis', 'planq', 'celestia', 'oraichain'];
 
 const Hero = () => {
   const stats = {
-    assetsStaked: '100,000 $',
-    totalNodes: 6,
+    assetsStaked: '10,000 $',
+    totalNodes: 3,
     totalDelegators: 150,
   };
 

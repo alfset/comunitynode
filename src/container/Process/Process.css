@@ -99,3 +99,10 @@
     border-top-left-radius: 45px;
     border-top-right-radius: 45px;
 }
+
+.dapps-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust based on your design preference */
+    justify-content: center; /* Centers the cards in the container */
+  }
