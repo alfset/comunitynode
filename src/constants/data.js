@@ -14,8 +14,8 @@ const Menu = [
         link: 'transfer',
     },
     {
-        text: 'Proposal',
-        link: 'blog',
+        text: 'Oracle DAO',
+        link: 'https://oracle.dao.comunitynode.my.id/#/',
     },
     {
         text: 'Multisig',
@@ -139,6 +139,12 @@ const Team = [
 ];
 
 const DApps = [
+    {
+        name: 'Multichain Oracle DAO',
+        description: 'DAO that control Offchain to onchain',
+        imageUrl: 'https://www.physica.finance/logo.png',
+        link: 'https://oracle.dao.comunitynode.my.id/#/',
+      },
     {
       name: 'Physica Finance',
       description: 'Decentral Exchange On Planq Network',
