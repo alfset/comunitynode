@@ -1,7 +1,6 @@
 import images from './images';
 
-const Menu = [
-    {
+const Menu = [{
         text: 'Service',
         link: 'https://github.com/alfset/Validator-tools',
     },
@@ -18,12 +17,11 @@ const Menu = [
         link: 'https://oracle.dao.comunitynode.my.id/#/',
     },
     {
-        text: 'Multisig',
-        link: 'https://multisig.comunitynode.my.id',
+        text: 'Docs',
+        link: 'https://comunity-node.gitbook.io/validator-tools',
     },
 ];
-const ServicesData = [
-    {
+const ServicesData = [{
         titleone: 'Top-Tier Security',
         link: '#',
         itemclass: 'blight',
@@ -69,8 +67,7 @@ const ServicesData = [
         description: "Maximize Your Profits with Our Competitive Fee Staking Service! Enter a world where your staking investments are optimized for maximum returns, thanks to our industry-leading competitive fee structure. We believe in empowering our clients, which is why we've meticulously designed our staking service to offer more value, ensuring you keep a larger share of your earnings. Our low fees mean your investments can grow faster and go further, without sacrificing security or performance. Experience the difference that fair pricing makes, coupled with our state-of-the-art technology and unparalleled support. Choose our staking service today and invest smarter, letting your crypto work for you while you enjoy the rewards. Elevate your staking strategy with us and watch your digital assets flourish!",
     },
 ]
-const CaseStudies = [
-    {
+const CaseStudies = [{
         text: 'One of the primary challenges Comunity Node faced was ensuring the security of its validation node. prevent malicious activities that could compromise the node uptime and the safety of staked assets.',
     },
     {
@@ -81,8 +78,7 @@ const CaseStudies = [
     },
 ];
 
-const WorkingProcess = [
-    {
+const WorkingProcess = [{
         title: 'Our Recent Web3 Development',
         description: 'Our previously Apps development, is Creating and managing Decentralized Exhange on Planq Foundation. Thanks to Planq Foundation team who belive and support us to build their Growth of ecosystem',
     },
@@ -105,8 +101,7 @@ const WorkingProcess = [
 
 ];
 
-const Team = [
-    {
+const Team = [{
         name: 'Alf',
         position: 'Founder',
         info: '2+ years of experience in Node operator, System Security, And lead Developer on Dapps Developer ',
@@ -138,18 +133,17 @@ const Team = [
     },
 ];
 
-const DApps = [
-    {
+const DApps = [{
         name: 'Multichain Oracle DAO',
         description: 'DAO that control Offchain to onchain',
         imageUrl: 'https://www.physica.finance/logo.png',
         link: 'https://oracle.dao.comunitynode.my.id/#/',
-      },
+    },
     {
-      name: 'Physica Finance',
-      description: 'Decentral Exchange On Planq Network',
-      imageUrl: 'https://www.physica.finance/logo.png',
-      link: 'https://www.physica.finance',
+        name: 'Physica Finance',
+        description: 'Decentral Exchange On Planq Network',
+        imageUrl: 'https://www.physica.finance/logo.png',
+        link: 'https://www.physica.finance',
     },
     {
         name: 'Mobile Wallet',
@@ -169,6 +163,13 @@ const DApps = [
         imageUrl: 'https://s3.amazonaws.com/keybase_processed_uploads/6529e729081d586e71e4fa64fac33c05_360_360.jpg',
         link: 'https://github.com/alfset/Validator-tools'
     },
-  ];
+];
 
-export default { Menu, CaseStudies, WorkingProcess, Team, ServicesData, DApps };
+export default {
+    Menu,
+    CaseStudies,
+    WorkingProcess,
+    Team,
+    ServicesData,
+    DApps
+};

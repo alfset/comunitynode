@@ -21,7 +21,7 @@ const Menu = () => {
                         ))}
                     </Nav>
                     <Nav>
-                        <Button variant="outline-primary" href="#explorer">Explorer</Button> {/* Explorer button */}
+                        <Button variant="outline-primary" href="#explorer">Explorer</Button> 
                     </Nav>
                 </Navbar.Collapse>
             </Container>
