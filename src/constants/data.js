@@ -20,6 +20,11 @@ const Menu = [{
         text: 'Docs',
         link: 'https://comunity-node.gitbook.io/validator-tools',
     },
+    {
+        text: 'Price Prediction',
+        link: 'https://priceprediction.comunitynode.my.id/api/predict/bitcoin',
+    },
+
 ];
 const ServicesData = [{
         titleone: 'Top-Tier Security',
