@@ -157,6 +157,12 @@ const DApps = [{
         link: 'https://www.physica.finance'
     },
     {
+        name: 'CoFinance',
+        description: 'OneStop DeFi Service',
+        imageUrl: 'https://s3.amazonaws.com/keybase_processed_uploads/6529e729081d586e71e4fa64fac33c05_360_360.jpg',
+        link: 'https://www.cofinance.comunitynode.my.id'
+    },
+    {
         name: 'NPM Library',
         description: 'library that we building',
         imageUrl: 'https://s3.amazonaws.com/keybase_processed_uploads/6529e729081d586e71e4fa64fac33c05_360_360.jpg',
