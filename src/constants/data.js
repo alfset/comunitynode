@@ -24,10 +24,6 @@ const Menu = [{
         text: 'Co Finance',
         link: 'https://cofinance.comunitynode.my.id',
     },
-    {
-        text: 'Price Prediction',
-        link: 'https://priceprediction.comunitynode.my.id/api/predict/bitcoin',
-    },
 
 ];
 const ServicesData = [{
