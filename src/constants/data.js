@@ -21,6 +21,10 @@ const Menu = [{
         link: 'https://comunity-node.gitbook.io/validator-tools',
     },
     {
+        text: 'Co Finance',
+        link: 'https://cofinance.comunitynode.my.id',
+    },
+    {
         text: 'Price Prediction',
         link: 'https://priceprediction.comunitynode.my.id/api/predict/bitcoin',
     },
