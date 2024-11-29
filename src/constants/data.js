@@ -107,36 +107,49 @@ const WorkingProcess = [{
 ];
 
 const Team = [{
-        name: 'Alf',
-        position: 'Founder',
-        info: '2+ years of experience in Node operator, System Security, And lead Developer on Dapps Developer ',
-        linkedin: '#',
-    },
-    {
-        name: 'Tirs',
-        position: 'Director of Operations',
-        info: '5+ years of experience in project management and team leadership. Strong organizational and communication skills',
-        linkedin: '#',
-    },
-    {
-        name: 'Elanarcy',
-        position: 'Blockchain Specialist',
-        info: '3+ years of experience in focused on implementing and managing blockchain-based solutions within an organization or for clients',
-        linkedin: '#',
-    },
-    {
-        name: 'Alfin Sug',
-        position: 'Fullstack web3',
-        info: '3+ years of experience in focused on implementing and managing blockchain-based solutions within an organization or for clients',
-        linkedin: '#',
-    },
-    {
-        name: 'Afif Abdillah',
-        position: 'Devops Manager',
-        info: '3+ years of experience in focused on implementing and managing blockchain-based solutions within an organization or for clients',
-        linkedin: '#',
-    },
+    name: 'Alfino Setiawan',
+    position: 'Founder',
+    info: '3+ years of experience as a Node operator, specializing in System Security and leading DApp development.',
+    linkedin: 'https://www.linkedin.com/in/alfinosetiawan/',
+    image: 'https://media.licdn.com/dms/image/v2/D5603AQFFSvAH6AL4Sg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1714947953716?e=1738195200&v=beta&t=q1Wy2I1ys96NQ-hv1Kn_xIF_Br7UFXMSAbWL5vk3hrs',
+},
+{
+    name: 'Alfin Sugestian',
+    position: 'CTO',
+    info: '3+ years of experience in implementing and managing front-end blockchain-based solutions.',
+    linkedin: 'https://www.linkedin.com/in/alfin-sugestian/',
+    image: 'https://media.licdn.com/dms/image/v2/D5603AQHR_6eEiwAPiQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1696932319380?e=1738195200&v=beta&t=_vf_iGWnTWMbTBG1if2OOh-GM8nRTtYLRMy_Msp2wfM',
+},
+{
+    name: 'Tutut Indah',
+    position: 'Designer',
+    info: '3+ years of experience in project management and team leadership, with strong Design present and social media handler.',
+    linkedin: 'https://www.linkedin.com/in/tutut-indah-9a6132119/',
+    image: 'https://media.licdn.com/dms/image/v2/D5603AQFyCLJZZJyJoA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1707422655604?e=1738195200&v=beta&t=MzxqVKUQFOBHkJ7cnZdROgEccWYsYz2JWlYAuKrGSKs',
+},
+{
+    name: 'Syahvril Aditya',
+    position: 'Blockchain Specialist',
+    info: '3+ years of experience in implementing and managing blockchain-based solutions for organizations and clients.',
+    linkedin: 'https://www.linkedin.com/in/elanarcy/',
+    image: 'https://media.licdn.com/dms/image/v2/D5603AQGXkIpbvrz8uw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1703959757850?e=1738195200&v=beta&t=hN8nI4GHCOudST1z3qcESw6Ys36yne03X65n1cShgtI',
+},
+{
+    name: 'Randy',
+    position: 'Advisor and Business Development',
+    info: '3+ years of experience in business development and advising on blockchain-based solutions for organizations and clients.',
+    linkedin: 'https://www.linkedin.com/in/einreinrandy/',
+    image: 'https://media.licdn.com/dms/image/v2/D5603AQHcFXRXuxAIQA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1710503827631?e=1738195200&v=beta&t=q5uZT84m3Wv39B4S4a0pMPcVuMqNkGpkv7Ge_FAS5rs',
+},
+{
+    name: 'Ardiyansyah Putra',
+    position: 'Community Manager',
+    info: '3+ years of experience in community management',
+    linkedin: 'https://www.linkedin.com/in/ardyansyah-fikri-0bb34126a/',
+    image: 'https://media.licdn.com/dms/image/v2/D5603AQH3pY_HjtvrmA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719852340162?e=1738195200&v=beta&t=DW4CrEI2tJNfjcKUg4Y97O-23wvvzehxGwRW-FwL71c',
+},
 ];
+
 
 const DApps = [{
         name: 'Multichain Oracle DAO',
