@@ -152,6 +152,12 @@ const DApps = [{
         link: 'https://www.physica.finance'
     },
     {
+        name: 'Cardano Hub Indonesia',
+        description: 'Quest Homer Run build with Aiken and Mesh sdk',
+        imageUrl: 'https://surabaya-blockchain-alliance-sand.vercel.app/img/logo.png',
+        link: 'https://surabaya-blockchain-alliance-sand.vercel.app/'
+    },
+    {
         name: 'CoFinance',
         description: 'OneStop DeFi Service',
         imageUrl: 'https://s3.amazonaws.com/keybase_processed_uploads/6529e729081d586e71e4fa64fac33c05_360_360.jpg',
@@ -164,10 +170,10 @@ const DApps = [{
         link: 'https://www.npmjs.com/package/tools-comunitynode'
     },
     {
-        name: 'Validator Tools',
-        description: 'tools for node and validator',
+        name: 'Validator Zone',
+        description: 'maps of Validator in Cosmos and tendermint ecosystem',
         imageUrl: 'https://s3.amazonaws.com/keybase_processed_uploads/6529e729081d586e71e4fa64fac33c05_360_360.jpg',
-        link: 'https://github.com/alfset/Validator-tools'
+        link: 'https://validator.zone.comunitynode.my.id'
     },
 ];
 
