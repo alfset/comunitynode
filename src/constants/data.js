@@ -127,27 +127,6 @@ const Team = [{
     linkedin: 'https://www.linkedin.com/in/tutut-indah-9a6132119/',
     image: 'https://media.licdn.com/dms/image/v2/D5603AQFyCLJZZJyJoA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1707422655604?e=1738195200&v=beta&t=MzxqVKUQFOBHkJ7cnZdROgEccWYsYz2JWlYAuKrGSKs',
 },
-{
-    name: 'Syahvril Aditya',
-    position: 'Blockchain Specialist',
-    info: '3+ years of experience in implementing and managing blockchain-based solutions for organizations and clients.',
-    linkedin: 'https://www.linkedin.com/in/elanarcy/',
-    image: 'https://media.licdn.com/dms/image/v2/D5603AQGXkIpbvrz8uw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1703959757850?e=1738195200&v=beta&t=hN8nI4GHCOudST1z3qcESw6Ys36yne03X65n1cShgtI',
-},
-{
-    name: 'Randy',
-    position: 'Advisor and Business Development',
-    info: '3+ years of experience in business development and advising on blockchain-based solutions for organizations and clients.',
-    linkedin: 'https://www.linkedin.com/in/einreinrandy/',
-    image: 'https://media.licdn.com/dms/image/v2/D5603AQHcFXRXuxAIQA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1710503827631?e=1738195200&v=beta&t=q5uZT84m3Wv39B4S4a0pMPcVuMqNkGpkv7Ge_FAS5rs',
-},
-{
-    name: 'Ardiyansyah Putra',
-    position: 'Community Manager',
-    info: '3+ years of experience in community management',
-    linkedin: 'https://www.linkedin.com/in/ardyansyah-fikri-0bb34126a/',
-    image: 'https://media.licdn.com/dms/image/v2/D5603AQH3pY_HjtvrmA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1719852340162?e=1738195200&v=beta&t=DW4CrEI2tJNfjcKUg4Y97O-23wvvzehxGwRW-FwL71c',
-},
 ];
 
 

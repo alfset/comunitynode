@@ -1,0 +1,19 @@
+/* HomePage.css */
+.homepage-wrapper {
+  position: relative;
+  background: linear-gradient(180deg, #0d0d2b 0%, #1a1a3d 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.homepage-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .homepage-content {
+    padding: 0 1rem;
+  }
+}

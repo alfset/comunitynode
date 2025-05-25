@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="col-md-4 col-12">
           <ul className="info-contact">
             <li> <span>Contact us:</span></li>
-            <li>Email: alfset5@gmail.com</li>
+            <li>Email: alf@comunitynode..my.id</li>
             <li>Telegram: @alfsst</li>
             <li>Address: Ngaglik Kuburan 19 </li>
             Surabaya, East Java, Indonesia.

@@ -4,19 +4,37 @@ import { images } from '../../constants';
 
 const CTA = () => {
   return (
-    <div className="section-padding">
-      <div className="row cta">
-        <div className="col-lg-8 col-12">
-          <h3>Let’s Start Earning And Staked with us</h3>
-          <p className="pt-2 pb-4">where your digital assets work for you. Dive into the future of finance by staking with us, and start earning passive income effortlessly. Our platform offers a seamless staking experience, designed for both beginners and seasoned investors looking to maximize their earnings.</p>
-          <a href="/staking" className="btn-positivus">Start Staking</a>
+    <div className="section-padding cta">
+      <div className="cta-container">
+        <div className="cta-content">
+          <h3 className="cta-title">
+            <span className="title-highlight">Unlock</span> Earnings with Staking
+          </h3>
+          <p className="cta-subtitle">
+            Join the future of finance! Stake your digital assets with us and earn passive income effortlessly. Our user-friendly platform is perfect for beginners and experts alike.
+          </p>
+          <div className="cta-buttons">
+            <a href="/staking" className="cta-button primary">
+              Start Staking Now
+            </a>
+            <a href="/learn-more" className="cta-button secondary">
+              Learn More
+            </a>
+          </div>
         </div>
-        <div className="col-lg-4 d-lg-flex d-none">
-          <img src={images.thingshappen} alt="thingshappen" />
+        <div className="cta-image-container">
+          <img src={images.thingshappen} alt="Staking Illustration" className="cta-image" />
+        </div>
+      </div>
+      <div className="cta-background">
+        <div className="gradient-overlay"></div>
+        <div className="animated-shapes">
+          <div className="shape circle"></div>
+          <div className="shape triangle"></div>
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default CTA;

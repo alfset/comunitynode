@@ -1,16 +1,81 @@
-/* Loading.css */
 .loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100%;
-    background-color: #fff; /* or any color that matches your splash screen background */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(180deg, #0d0d2b 0%, #1a1a3d 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.loading-gif {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.5));
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.loading-text {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  margin-top: 1rem;
+  animation: fadeInText 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
   }
-  
-  .loading-container img {
-    /* Adjust as needed for your specific GIF */
-    width: 100px; /* Example width */
-    height: auto; /* Maintain aspect ratio */
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
   }
-  
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInText {
+  0% {
+    opacity: 0.5;
+    transform: translateY(10px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0.5;
+    transform: translateY(10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .loading-gif {
+    width: 100px;
+  }
+
+  .loading-text {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .loading-gif {
+    width: 80px;
+  }
+
+  .loading-text {
+    font-size: 1rem;
+  }
+}

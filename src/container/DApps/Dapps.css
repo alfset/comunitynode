@@ -1,54 +1,163 @@
-/* Dapps.css - Adjustments for hover effect on the card itself */
+.dapps-section {
+  position: relative;
+  background: linear-gradient(180deg, #0d0d2b 0%, #1a1a3d 100%);
+  padding: 4rem 2rem;
+  overflow: hidden;
+  color: #ffffff;
+}
 
-.card-dapp {
-    background: #FFFFFF;
-    border: 1px solid #191A23;
-    box-shadow: 0px 5px 0px #191A23;
-    border-radius: 45px;
-    padding: 2rem 1rem 0rem;
-    margin: 0 .3rem 1.5rem;
-    min-height: 250px;
-    max-width: 390px;
-    text-align: center; /* Centering the content */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transition for hover effects */
-    cursor: pointer; /* Indicates the card is clickable */
+.dapps-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.dapp-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInCard 0.8s ease-out forwards;
+  animation-delay: calc(0.2s * var(--index));
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.dapp-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.dapp-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(110, 68, 255, 0.2), rgba(255, 107, 107, 0.2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dapp-card:hover::before {
+  opacity: 1;
+}
+
+.dapp-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.dapp-card-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto 1.5rem;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.dapp-card:hover .dapp-card-img {
+  transform: scale(1.1);
+}
+
+.dapp-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dapp-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  background: linear-gradient(90deg, #ffd700, #ffaa00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dapp-card-text {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin: 0;
+}
+
+.dapp-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffd700;
+  margin-top: 1rem;
+  transition: color 0.3s ease;
+}
+
+.dapp-card-cta:hover {
+  color: #ffaa00;
+}
+
+.cta-arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.dapp-card-cta:hover .cta-arrow {
+  transform: translateX(5px);
+}
+
+@keyframes fadeInCard {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .card-dapp:hover {
-    transform: translateY(-5px); /* Slightly raise the card on hover */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); /* Increase shadow for emphasis */
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .card-dapp-img {
-    width: 70px; /* Adjusted as per your specification */
-    margin: 0 auto; /* Centering the image */
-    padding-bottom: 1rem; /* Space below the image */
+}
+
+@media (max-width: 768px) {
+  .dapps-section {
+    padding: 3rem 1rem;
   }
-  
-  .card-dapp-title {
-    display: block;
-    font-weight: 700;
-    margin-bottom: 1rem; /* Space after the title */
+
+  .dapps-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
-  
-  .card-dapp-text {
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 23px;
-    padding: 0 .5rem;
-    margin-bottom: 2rem; /* Space at the bottom of the card */
+
+  .dapp-card {
+    max-width: 100%;
+    padding: 1.5rem;
   }
-  
-  /* Since we're making the entire card clickable, we can simplify the link style */
-  .card-dapp-link {
-    text-decoration: none; /* Removing underline from the link */
-    color: inherit; /* Inherits the text color from parent */
+
+  .dapp-card-title {
+    font-size: 1.3rem;
   }
-  
-  @media (max-width: 768px) {
-    .card-dapp {
-      margin: 1.5rem auto;
-      max-width: 460px; /* Ensuring cards adjust on smaller screens */
-    }
+
+  .dapp-card-text {
+    font-size: 0.95rem;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .dapp-card-img {
+    width: 60px;
+    height: 60px;
+  }
+}
