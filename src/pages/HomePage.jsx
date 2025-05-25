@@ -5,15 +5,18 @@ import Loading from '../Loading';
 import { motion } from 'framer-motion';
 import './HomePage.css';
 
+// Bounce-in animation using spring
 const fadeInUp = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 80 },
   visible: (i = 1) => ({
     opacity: 1,
     y: 0,
     transition: {
-      delay: i * 0.2,
-      duration: 0.6,
-      ease: 'easeOut',
+      delay: i * 0.15,
+      type: 'spring',
+      stiffness: 120,
+      damping: 12,
+      mass: 0.8,
     },
   }),
 };
@@ -42,7 +45,7 @@ const HomePage = () => {
                 custom={i}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
                 variants={fadeInUp}
               >
                 <Component />

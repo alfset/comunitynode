@@ -1,4 +1,7 @@
 import images from './images';
+import alf from '../assets/alf.jpg'
+import alfin from '../assets/alfin.jpeg'
+import tirs from '../assets/tirs.jpg'
 
 const Menu = [{
         text: 'Service',
@@ -108,24 +111,24 @@ const WorkingProcess = [{
 
 const Team = [{
     name: 'Alfino Setiawan',
-    position: 'Founder',
+    position: '',
     info: '3+ years of experience as a Node operator, specializing in System Security and leading DApp development.',
     linkedin: 'https://www.linkedin.com/in/alfinosetiawan/',
-    image: 'https://media.licdn.com/dms/image/v2/D5603AQFFSvAH6AL4Sg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1714947953716?e=1738195200&v=beta&t=q1Wy2I1ys96NQ-hv1Kn_xIF_Br7UFXMSAbWL5vk3hrs',
+    image: alf,
 },
 {
     name: 'Alfin Sugestian',
-    position: 'CTO',
+    position: '',
     info: '3+ years of experience in implementing and managing front-end blockchain-based solutions.',
     linkedin: 'https://www.linkedin.com/in/alfin-sugestian/',
-    image: 'https://media.licdn.com/dms/image/v2/D5603AQHR_6eEiwAPiQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1696932319380?e=1738195200&v=beta&t=_vf_iGWnTWMbTBG1if2OOh-GM8nRTtYLRMy_Msp2wfM',
+    image: alfin,
 },
 {
     name: 'Tutut Indah',
-    position: 'Designer',
+    position: '',
     info: '3+ years of experience in project management and team leadership, with strong Design present and social media handler.',
     linkedin: 'https://www.linkedin.com/in/tutut-indah-9a6132119/',
-    image: 'https://media.licdn.com/dms/image/v2/D5603AQFyCLJZZJyJoA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1707422655604?e=1738195200&v=beta&t=MzxqVKUQFOBHkJ7cnZdROgEccWYsYz2JWlYAuKrGSKs',
+    image: tirs,
 },
 ];
 

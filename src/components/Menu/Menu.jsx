@@ -11,24 +11,32 @@ import './Menu.css';
 const Menu = () => {
   const [expanded, setExpanded] = useState(false);
 
+  // Close menu when clicking a nav link
   const handleNavClick = () => setExpanded(false);
 
   return (
-    <Navbar expand="lg" className="navbar-custom" expanded={expanded} onToggle={setExpanded}>
+    <Navbar
+      expand="lg"
+      className="navbar-custom"
+      expanded={expanded}
+      onToggle={setExpanded}
+      collapseOnSelect
+      sticky="top"
+    >
       <Container className="navbar-container">
         <Navbar.Brand href="#home" className="navbar-brand" onClick={handleNavClick}>
           <img src={logo} alt="Community Node Logo" className="navbar-logo" />
           Community Node
         </Navbar.Brand>
+
         <Navbar.Toggle
           aria-controls="responsive-navbar-nav"
           className="navbar-toggler"
-          onClick={() => setExpanded(prev => !prev)}
         >
           <FiMenu className="navbar-toggler-icon" />
         </Navbar.Toggle>
 
-        <Navbar.Collapse id="responsive-navbar-nav">
+        <Navbar.Collapse id="responsive-navbar-nav" className="navbar-collapse">
           <Nav className="navbar-nav mx-auto">
             {data.Menu.filter(item => item.text === 'Co Finance').map((item, index) => (
               <Nav.Link
