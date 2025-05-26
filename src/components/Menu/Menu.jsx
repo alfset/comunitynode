@@ -29,10 +29,7 @@ const Menu = () => {
           Community Node
         </Navbar.Brand>
 
-        <Navbar.Toggle
-          aria-controls="responsive-navbar-nav"
-          className="navbar-toggler"
-        >
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" className="navbar-toggler">
           <FiMenu className="navbar-toggler-icon" />
         </Navbar.Toggle>
 
@@ -49,18 +46,18 @@ const Menu = () => {
               </Nav.Link>
             ))}
           </Nav>
-
-          <Nav className="navbar-nav">
+          <div className="d-lg-none navbar-nav">
             <Nav.Link as="div" className="nav-link btn-explorer">
               <Button
                 variant="outline-primary"
                 href="#explorer"
                 onClick={handleNavClick}
+                className="w-100"
               >
                 Explorer
               </Button>
             </Nav.Link>
-          </Nav>
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>

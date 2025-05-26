@@ -6,7 +6,7 @@ import './CaseStudies.css';
 
 const CaseStudies = () => {
   return (
-    <div className="section-padding case-studies-section" id="use-cases">
+    <div className="section-padding case-studies-section" id="casestudies">
       <Headings
         title="Our Success Stories"
         text="Powering the Planq Network for over a year, our validator stands out with a passionate team of blockchain enthusiasts and community node runners from Surabaya. We prioritize security, community engagement, and top-tier performance."

@@ -1,64 +1,68 @@
 import React from 'react';
-import { Typewriter } from 'react-simple-typewriter';
 import './Hero.css';
+import { Typewriter } from 'react-simple-typewriter';
 
-const Hero = () => {
+export default function Hero() {
   return (
-    <div className="hero">
+    <section className="hero">
       <div className="hero-content">
-        <div className="title-container">
-          <h1 className="title">
-            <span className="title-highlight">
+        <div className="text-container">
+          <div className="title-container">
+            <h1 className="title">
+              <span className="orange-text">Our Mission is to </span>
+              <span className="title-highlight">
+                <Typewriter
+                  words={['Empower', 'Build', 'Innovate', 'Thrive']}
+                  loop={0}
+                  cursor
+                  cursorStyle="|"
+                  typeSpeed={70}
+                  deleteSpeed={50}
+                  delaySpeed={3000}
+                />
+              </span>
+            </h1>
+            <p className="subtitle">
               <Typewriter
-                words={['Empower', 'Build', 'Innovate', 'Thrive']}
+                words={[
+                  'Your gateway to decentralized innovation.',
+                  'Stake, develop, and grow on Blockchain.',
+                  'Join a vibrant blockchain community.',
+                ]}
                 loop={0}
                 cursor
                 cursorStyle="|"
-                typeSpeed={70}
-                deleteSpeed={50}
-                delaySpeed={1000}
+                typeSpeed={50}
+                deleteSpeed={30}
+                delaySpeed={2000}
               />
-            </span>{' '}
-            Is Our Mission
-          </h1>
-          <p className="subtitle">
-            <Typewriter
-              words={[
-                'Your gateway to decentralized innovation.',
-                'Stake, develop, and grow on Blockchain.',
-                'Join a vibrant blockchain community.',
-              ]}
-              loop={0}
-              cursor
-              cursorStyle="|"
-              typeSpeed={50}
-              deleteSpeed={30}
-              delaySpeed={2000}
-            />
-          </p>
+            </p>
+          </div>
+          <div className="cta-container">
+            <a href="/explore" className="cta-button primary">
+              Explore
+            </a>
+          </div>
         </div>
-        <div className="cta-container">
-          <a href="#explore" className="cta-button primary">
-            Start Exploring
-          </a>
-          <a href="#learn-more" className="cta-button secondary">
-            Learn More
-          </a>
+
+        <div className="fixed-image-container">
+          <div className="blockchain-graphic" />
+
+          {/* Orbiting dots around the image */}
+          <div className="orbiting-dots-container" aria-hidden="true">
+            <span className="orbiting-dot dot1 purple"></span>
+            <span className="orbiting-dot dot2 pink"></span>
+            <span className="orbiting-dot dot3 purple"></span>
+            <span className="orbiting-dot dot4 pink"></span>
+            <span className="orbiting-dot dot5 purple"></span>
+          </div>
         </div>
       </div>
+
+      {/* Background and gradient overlay */}
       <div className="hero-background">
         <div className="gradient-overlay"></div>
-        <div className="animated-shapes">
-          <div className="shape circle shape-1"></div>
-          <div className="shape triangle shape-2"></div>
-          <div className="shape square shape-3"></div>
-          <div className="shape hexagon shape-4"></div>
-          <div className="shape pulse shape-5"></div>
-        </div>
-        
       </div>
-    </div>
+    </section>
   );
-};
-
-export default Hero;
+}

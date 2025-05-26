@@ -4,7 +4,7 @@ import { images } from '../../constants';
 
 const CTA = () => {
   return (
-    <div className="section-padding cta">
+    <div className="section-padding cta" id="cta">
       <div className="cta-container">
         <div className="cta-content">
           <h3 className="cta-title">

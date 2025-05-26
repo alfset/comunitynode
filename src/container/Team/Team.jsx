@@ -5,7 +5,7 @@ import { BsLinkedin } from 'react-icons/bs';
 import './Team.css';
 
 const Team = () => {
-  const fallbackImage = 'https://via.placeholder.com/150?text=Team+Member'; // Fallback image
+  const fallbackImage = 'https://via.placeholder.com/150?text=Team+Member';
 
   return (
     <div className="section-padding team-section" id="team">
@@ -22,7 +22,7 @@ const Team = () => {
                 alt={name}
                 className="team-image"
                 loading="lazy"
-                onError={(e) => (e.target.src = fallbackImage)} // Fallback on error
+                onError={(e) => (e.target.src = fallbackImage)}
               />
               <div className="team-info">
                 <h5 className="team-name">{name}</h5>

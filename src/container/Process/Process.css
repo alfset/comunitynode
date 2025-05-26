@@ -1,8 +1,33 @@
 .process-section {
   position: relative;
-  background: linear-gradient(180deg, #0d0d2b 0%, #1a1a3d 100%);
-  padding: 5rem 2rem;
+  background: rgba(0, 0, 0, 0.85); /* Transparent black to match CaseStudies */
+  padding: 4rem 2rem; /* Match CaseStudies */
   overflow: hidden;
+}
+
+/* Title styling to match CaseStudies */
+.process-section h1,
+.process-section .title-one {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #f0f0ff; /* Light purple */
+  text-shadow: 0 0 6px rgba(111, 111, 255, 0.5); /* Match CaseStudies */
+  margin-bottom: 1.5rem;
+}
+
+.process-section h1::after,
+.process-section .title-one::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #8a8aff, #a0a0ff); /* Purple-to-blue gradient */
+  border-radius: 2px;
 }
 
 .process-container {
@@ -12,20 +37,21 @@
 }
 
 .process-item {
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
+  background: rgba(50, 50, 70, 0.12); /* Gray transparent to match CaseStudies */
+  border: 1px solid rgba(255, 255, 255, 0.18); /* Match CaseStudies */
+  border-radius: 12px; /* Slightly larger than original for consistency */
   margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px); /* Match CaseStudies */
+  box-shadow: 0 12px 36px rgba(15, 15, 40, 0.5); /* Match CaseStudies */
   animation: fadeInItem 0.8s ease-out forwards;
   animation-delay: calc(0.2s * var(--index));
-  backdrop-filter: blur(4px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
 .process-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-8px); /* Match CaseStudies hover */
+  box-shadow: 0 16px 48px rgba(20, 20, 60, 0.7); /* Match CaseStudies */
+  border-color: #a0a0ffcc; /* Blue-purple border on hover */
 }
 
 .process-header {
@@ -33,15 +59,15 @@
   align-items: center;
   gap: 1rem;
   flex: 1;
-  padding-right: 2rem; /* Space for icon */
+  padding-right: 2rem;
 }
 
 .process-number {
   font-family: var(--font-heading);
-  font-size: 2.2rem;
+  font-size: 2rem; /* Slightly smaller for balance */
   font-weight: 700;
-  color: #ffffff;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  color: #e8e8ff; /* Light purple to match CaseStudies */
+  text-shadow: 0 0 3px rgba(0, 0, 50, 0.2); /* Match CaseStudies */
   transition: transform 0.3s ease;
 }
 
@@ -51,38 +77,37 @@
 
 .process-title {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.4rem; /* Match CaseStudies text size */
   font-weight: 600;
-  color: #ffffff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-  transition: color 0.3s ease;
+  color: #e8e8ff; /* Light purple */
+  text-shadow: 0 0 3px rgba(0, 0, 50, 0.2);
 }
 
 .accordion-button {
   background: transparent;
-  color: #ffffff;
+  color: #e8e8ff; /* Light purple */
   font-family: var(--font-base);
   font-size: 1.4rem;
   font-weight: 600;
   padding: 1.5rem;
-  border-radius: 8px;
-  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .accordion-button:not(.collapsed) {
-  background: linear-gradient(90deg, rgba(110, 68, 255, 0.2), rgba(255, 107, 107, 0.2));
-  color: #333333;
+  background: rgba(138, 138, 255, 0.15); /* Subtle purple to match theme */
+  color: #e8e8ff; /* Keep light purple */
   box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .accordion-button:not(.collapsed) .process-title,
 .accordion-button:not(.collapsed) .process-number {
-  color: #333333;
-  text-shadow: none;
+  color: #f0f0ff; /* Brighter purple for contrast */
+  text-shadow: 0 0 3px rgba(0, 0, 50, 0.2);
 }
 
 .accordion-button:focus {
@@ -91,7 +116,7 @@
 }
 
 .accordion-button:hover {
-  background: linear-gradient(90deg, rgba(110, 68, 255, 0.1), rgba(255, 107, 107, 0.1));
+  background: rgba(138, 138, 255, 0.1); /* Subtle purple hover */
 }
 
 .accordion-icon {
@@ -100,21 +125,21 @@
   justify-content: center;
   width: 24px;
   height: 24px;
-  position: relative; /* Contain icons */
+  position: relative;
   flex-shrink: 0;
 }
 
 .icon-plus,
 .icon-minus {
-  color: #ffffff;
+  color: #ffd700; /* Gold to match CaseStudies */
   font-size: 24px;
   transition: opacity 0.3s ease, transform 0.3s ease;
-  position: absolute; /* Stack icons */
+  position: absolute;
 }
 
 .accordion-button:not(.collapsed) .icon-plus,
 .accordion-button:not(.collapsed) .icon-minus {
-  color: #333333;
+  color: #ffaa00; /* Gold hover to match CaseStudies */
 }
 
 .icon-plus {
@@ -135,10 +160,10 @@
 }
 
 .accordion-body {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(50, 50, 70, 0.12); /* Gray transparent to match CaseStudies */
   padding: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 0 0 8px 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18); /* Match CaseStudies */
+  border-radius: 0 0 12px 12px;
   animation: fadeInBody 0.5s ease-out;
 }
 
@@ -146,14 +171,13 @@
   font-family: var(--font-base);
   font-size: 1.1rem;
   line-height: 1.6;
-  color: #ffffff;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-  transition: color 0.3s ease;
+  color: #dcdcffdd; /* Match CaseStudies text */
+  text-shadow: 0 0 3px rgba(0, 0, 50, 0.2);
 }
 
 .accordion-button:not(.collapsed) ~ .accordion-body .process-description {
-  color: #333333;
-  text-shadow: none;
+  color: #dcdcffdd; /* Keep consistent */
+  text-shadow: 0 0 3px rgba(0, 0, 50, 0.2);
 }
 
 .error-message {
@@ -179,6 +203,11 @@
     padding: 3rem 1rem;
   }
 
+  .process-section h1,
+  .process-section .title-one {
+    font-size: 2.5rem;
+  }
+
   .process-container {
     padding: 1rem 0;
   }
@@ -198,5 +227,16 @@
 
   .process-description {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .process-section {
+    padding: 2rem 0.5rem;
+  }
+
+  .process-section h1,
+  .process-section .title-one {
+    font-size: 2rem;
   }
 }

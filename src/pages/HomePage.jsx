@@ -5,7 +5,7 @@ import Loading from '../Loading';
 import { motion } from 'framer-motion';
 import './HomePage.css';
 
-// Bounce-in animation using spring
+// Bounce-in animation
 const fadeInUp = {
   hidden: { opacity: 0, y: 80 },
   visible: (i = 1) => ({
@@ -31,6 +31,17 @@ const HomePage = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const components = [
+    { id: 'hero', Component: Hero },
+    { id: 'services', Component: Services },
+    { id: 'cta', Component: CTA },
+    { id: 'casestudies', Component: CaseStudies },
+    { id: 'process', Component: Process },
+    { id: 'dapps', Component: Dapps },
+    { id: 'team', Component: Team },
+    { id: 'footer', Component: Footer },
+  ];
+
   return (
     <>
       {isLoading ? (
@@ -38,10 +49,16 @@ const HomePage = () => {
       ) : (
         <div className="homepage-wrapper">
           <Menu />
+          <div className="planetary-background">
+            <div className="planet planet-hero" />
+            <div className="planet planet-1" />
+            <div className="planet planet-2" />
+            <div className="planet planet-3" />
+          </div>
           <main className="homepage-content">
-            {[Hero, Services, CTA, CaseStudies, Process, Dapps, Team, Footer].map((Component, i) => (
+            {components.map(({ id, Component }, i) => (
               <motion.div
-                key={i}
+                key={id}
                 custom={i}
                 initial="hidden"
                 whileInView="visible"

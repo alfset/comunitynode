@@ -8,7 +8,7 @@ const Dapps = () => {
     <div className="section-padding dapps-section" id="dapps">
       <Headings
         title="Discover Our DApps"
-        text="Dive into the futureಸ. Explore our cutting-edge decentralized applications built on the Planq Network."
+        text="Dive into the future. Explore our cutting-edge decentralized applications built on the Planq Network."
       />
       <div className="dapps-container">
         {data.DApps.map(({ id, name, description, imageUrl, link }, index) => (

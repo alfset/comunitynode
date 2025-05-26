@@ -29,85 +29,145 @@ const Menu = [{
     },
 
 ];
-const ServicesData = [{
-        titleone: 'Top-Tier Security',
-        link: '#',
-        itemclass: 'blight',
-        imgURL: images.services01,
-        description: "Secure Our Blockchain's Future with Our Top-Tier Security Validator Node Service! In the rapidly evolving blockchain ecosystem, the integrity and security of Our network are paramount. Our premier Validator Node service is engineered to provide unmatched security, ensuring Our blockchain operates seamlessly and remains impervious to threats. With state-of-the-art encryption, continuous threat monitoring, and proactive defense mechanisms, we position your network at the forefront of security. Empower your blockchain with our Validator Node service and enjoy the peace of mind that comes from knowing your network is guarded by the best in the business. Elevate your blockchain's security, reliability, and performance today with our top-tier solution, and set a new standard for safety in the digital age",
-    },
-    {
-        titleone: 'Echosystem Growing',
-        titletwo: '',
-        link: '#',
-        itemclass: 'bgreen',
-        imgURL: images.services02,
-        description: "Unlock the Full Potential of Blockchain Ecosystem with Our Premier Growth Services! At the heart of every successful blockchain project lies a vibrant and thriving ecosystem. Our specialized services are designed to catalyze the growth of the blockchain ecosystem, transforming it into a dynamic, expansive network. We leverage cutting-edge strategies and deep industry insights to attract developers, users, and investors, fostering an environment of innovation and collaboration. With our support, Our blockchain ecosystem will not only grow but flourish, becoming a leading force in the digital world. Partner with us to fuel your ecosystem's expansion, drive adoption, and secure your place at the forefront of the blockchain revolution. Let's grow together and shape the future of technology!",
-    },
-    {
-        titleone: 'Consistent Performance',
-        itemclass: 'bdark',
-        imgURL: images.services03,
-        description: "Maximize Your Blockchain Efficiency with Our Consistent Performance Validator Node Service! In the fast-paced world of blockchain, reliability and speed are non-negotiable. Our Validator Node service is meticulously designed to deliver unwavering performance, ensuring your blockchain operates at peak efficiency around the clock. With our advanced infrastructure and optimization techniques, we guarantee smooth, uninterrupted transactions, empowering your network with the agility it needs to stay ahead. Our commitment to excellence means your blockchain will benefit from rapid processing times, reduced latency, and unparalleled stability. Trust us to elevate your blockchain's performance, ensuring consistency that sets you apart in the competitive digital landscape. Choose our Validator Node service for performance that propels your success!",
-    },
-    {
-        titleone: 'Support Restaking',
-        titletwo: '',
-        link: '#',
-        itemclass: 'blight',
-        imgURL: images.services04,
-        description: "Supercharge Your Earnings with Our Revolutionary Restaking Solution! Elevate your blockchain investment strategy to new heights with our state-of-the-art restaking service, designed to maximize your rewards effortlessly. Our innovative platform simplifies the restaking process, allowing you to automatically reinvest your staking rewards, compounding your earnings and unlocking exponential growth potential. With our restaking solution, you'll benefit from enhanced security, seamless transactions, and optimized returns, ensuring your assets work harder for you. Say goodbye to manual restaking and embrace a future of automated wealth accumulation. Join our restaking revolution today and witness your blockchain investments thrive like never before!",
-    },
-    {
-        titleone: 'Transparent ',
-        titletwo: 'Operations',
-        link: '#',
-        itemclass: 'bgreen',
-        imgURL: images.services05,
-        description: "Empower Your Blockchain Journey with Unparalleled Transparency! Dive into the future of blockchain with our project, where transparency isn't just a feature—it's our foundation. Our commitment to openness ensures that every transaction, every decision, and every operation is visible, verifiable, and secure. With our advanced blockchain solutions, stakeholders gain unprecedented insight into the ecosystem, fostering trust, accountability, and confidence. Experience the peace of mind that comes from knowing your investments are monitored and managed with the highest standards of integrity. Join us as we redefine the landscape of blockchain with transparency at its core. Together, we'll build a more trustworthy, efficient, and transparent digital future.",
-    },
-    {
-        titleone: 'Competitive Fees',
-        titletwo: '7% Fees',
-        link: '#',
-        itemclass: 'bdark',
-        imgURL: images.services06,
-        description: "Maximize Your Profits with Our Competitive Fee Staking Service! Enter a world where your staking investments are optimized for maximum returns, thanks to our industry-leading competitive fee structure. We believe in empowering our clients, which is why we've meticulously designed our staking service to offer more value, ensuring you keep a larger share of your earnings. Our low fees mean your investments can grow faster and go further, without sacrificing security or performance. Experience the difference that fair pricing makes, coupled with our state-of-the-art technology and unparalleled support. Choose our staking service today and invest smarter, letting your crypto work for you while you enjoy the rewards. Elevate your staking strategy with us and watch your digital assets flourish!",
-    },
-]
-const CaseStudies = [{
-        text: 'One of the primary challenges Comunity Node faced was ensuring the security of its validation node. prevent malicious activities that could compromise the node uptime and the safety of staked assets.',
-    },
-    {
-        text: 'Maintaining a high uptime was crucial for Comunity Node to remain in good standing within the Blockchain Network. Any downtime could result in significant penalties and a loss of staking rewards.',
-    },
-    {
-        text: 'Building and maintaining trust with delegators was another challenge. Comunity Node needed to prove its reliability and commitment to the POS Blockchain ecosystem to attract and retain delegators.',
-    },
+const ServicesData = [
+  // Validator Service
+  {
+    id: 'security',
+    titleone: 'Top-Tier Security',
+    titletwo: 'Validator Node',
+    link: '#security',
+    itemclass: 'blight',
+    imgURL: images.services01,
+    description:
+      'Secure your blockchain with our top-tier Validator Node service. Featuring advanced encryption, continuous monitoring, and robust defense mechanisms, we ensure your network’s integrity and reliability, setting a new standard for blockchain security.',
+  },
+  // Ecosystem & Community Growth
+  {
+    id: 'ecosystem',
+    titleone: 'Ecosystem Growth',
+    titletwo: 'Community & Innovation',
+    link: '#ecosystem',
+    itemclass: 'bgreen',
+    imgURL: images.services02,
+    description:
+      'Catalyze your blockchain ecosystem with our growth services. We attract developers, users, and investors through innovative strategies, fostering collaboration and driving adoption to make your network a leader in the digital space.',
+  },
+  // Web3 App Development
+  {
+    id: 'web3-development',
+    titleone: 'Web3 Application',
+    titletwo: 'Custom Blockchain Solutions',
+    link: '#web3-development',
+    itemclass: 'bdark',
+    imgURL: images.services07, // add suitable image in your assets
+    description:
+      'Design and develop cutting-edge Web3 decentralized applications tailored to your needs. From smart contracts to user-friendly DApps, we bring innovation and real-world utility to blockchain technology.',
+  },
+  // Research & Product Innovation
+  {
+    id: 'blockchain-research',
+    titleone: 'Blockchain Research',
+    titletwo: 'Product Innovation',
+    link: '#blockchain-research',
+    itemclass: 'blight',
+    imgURL: images.services08,
+    description:
+      'Pioneering new frontiers in blockchain technology through continuous research and development. We focus on creating scalable, secure, and efficient blockchain products that drive the future of decentralized systems.',
+  },
+  // Restaking & Rewards
+  {
+    id: 'restaking',
+    titleone: 'Support Restaking',
+    titletwo: 'Maximize Rewards',
+    link: '#restaking',
+    itemclass: 'blight',
+    imgURL: images.services04,
+    description:
+      'Amplify your earnings with our automated restaking solution. Simplify reward reinvestment, enhance security, and unlock exponential growth potential, making your blockchain investments work harder and smarter.',
+  },
+  // Transparency & Accountability
+  {
+    id: 'transparency',
+    titleone: 'Transparent Operations',
+    titletwo: 'Trust & Accountability',
+    link: '#transparency',
+    itemclass: 'bgreen',
+    imgURL: images.services05,
+    description:
+      'Experience blockchain with unmatched transparency. Our solutions provide verifiable transactions and operations, fostering trust and accountability to empower stakeholders with confidence in your network.',
+  },
+  // Competitive Fees
+  {
+    id: 'fees',
+    titleone: 'Competitive Fees',
+    titletwo: '7% Staking Fees',
+    link: '#fees',
+    itemclass: 'bdark',
+    imgURL: images.services06,
+    description:
+      'Maximize profits with our low 7% staking fees. Our service combines fair pricing, cutting-edge technology, and robust support to optimize your returns without compromising security or performance.',
+  },
 ];
 
-const WorkingProcess = [{
-        title: 'Our Recent Web3 Development',
-        description: 'Our previously Apps development, is Creating and managing Decentralized Exhange on Planq Foundation. Thanks to Planq Foundation team who belive and support us to build their Growth of ecosystem',
-    },
-    {
-        title: 'Snapshot Provider',
-        description: 'the Snapshot Provider! In the ever-evolving world of blockchain technology, staying updated and accessing historical data quickly and efficiently has become a paramount concern for developers, validators, and users alike.',
-    },
-    {
-        title: 'Guide',
-        description: 'Whether youre a developer, investor, or simply a blockchain enthusiast, understanding how to set up and interact with a blockchain node is crucial. This guide will provide you with step-by-step instructions and essential tips for a smooth experience',
-    },
-    {
-        title: 'IBC and bridge Operator',
-        description: 'Interoperability and seamless integration are the keys to unlocking true potential and value. As an IBC (Inter-Blockchain Communication) and Bridge Operator, we specialize in bridging the gaps between isolated blockchain networks, creating a unified, interconnected ecosystem',
-    },
-    {
-        title: 'Continual Improvement',
-        description: 'Continual Improvement is the ongoing effort to enhance products, services, or processes. These efforts can seek "incremental" improvement over time or "breakthrough" improvement all at once. Through a series of small, manageable changes, businesses can achieve substantial long-term results, improving productivity, customer satisfaction, and profitability',
-    },
 
+const CaseStudies = [
+  {
+    text: 'One of the primary challenges Comunity Node faced was ensuring the security of its validation node, preventing malicious activities that could compromise uptime and staked asset safety.',
+  },
+  {
+    text: 'Maintaining a high uptime was crucial for Comunity Node to remain in good standing within the blockchain network. Any downtime could result in penalties and loss of rewards.',
+  },
+  {
+    text: 'Building trust with delegators was another challenge. Comunity Node proved its reliability and commitment to the POS ecosystem to attract and retain delegators.',
+  },
+  {
+    text: 'Developing decentralized applications for Planq Foundation involved overcoming scalability and usability challenges to create user-friendly Web3 experiences.',
+  },
+  {
+    text: 'Research efforts led by Alfino Setiawana contributed to innovative blockchain protocols and improved interoperability solutions within the ecosystem.',
+  },
 ];
+
+
+const WorkingProcess = [
+  {
+    title: 'Our Recent Web3 Development',
+    description:
+      'Built and managed decentralized exchanges and other Web3 apps on Planq Foundation, pushing ecosystem growth with strong community backing.',
+  },
+  {
+    title: 'Snapshot Provider',
+    description:
+      'Providing reliable snapshot services to facilitate governance and historical data access for validators, developers, and users.',
+  },
+  {
+    title: 'Educational Guides',
+    description:
+      'Creating comprehensive guides to help developers and users set up and interact with blockchain nodes smoothly and securely.',
+  },
+  {
+    title: 'IBC and Bridge Operations',
+    description:
+      'Specializing in Inter-Blockchain Communication and bridge services to enable seamless cross-chain integration and interoperability.',
+  },
+  {
+    title: 'Continual Improvement',
+    description:
+      'Driving ongoing enhancements across products and services through incremental innovation and breakthrough developments.',
+  },
+  {
+    title: 'Research and Development',
+    description:
+      'Leading efforts in blockchain protocol innovation and ecosystem expansion strategies to push technological boundaries.',
+  },
+  {
+    title: 'Community and Validator Support',
+    description:
+      'Spearheading validator maintenance, community building, and educational outreach to empower users and developers.',
+  },
+];
+
+
 
 const Team = [{
     name: 'Alfino Setiawan',
@@ -153,7 +213,7 @@ const DApps = [{
     },
     {
         name: 'Cardano Hub Indonesia',
-        description: 'Quest Homer Run build with Aiken and Mesh sdk',
+        description: 'Quest Homer build on Cardano',
         imageUrl: 'https://surabaya-blockchain-alliance-sand.vercel.app/img/logo.png',
         link: 'https://surabaya-blockchain-alliance-sand.vercel.app/'
     },

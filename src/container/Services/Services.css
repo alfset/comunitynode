@@ -1,15 +1,31 @@
 .services-section {
   position: relative;
-  background: linear-gradient(180deg, #0d0d2b 0%, #1a1a3d 100%);
+  background: rgba(0, 0, 0, 0.85); /* hitam transparan */
   height: 100vh;
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #4c4c6a transparent;
+  scroll-behavior: smooth;
+  overscroll-behavior: none; /* Prevent default browser overscroll */
+}
+
+/* Custom scrollbar */
+.services-section::-webkit-scrollbar {
+  width: 8px;
+}
+.services-section::-webkit-scrollbar-thumb {
+  background-color: #4c4c6a;
+  border-radius: 4px;
 }
 
 .vertical-services-container {
   display: flex;
   flex-direction: column;
+  min-height: 100%; /* Ensure container takes full height */
+  gap: 3rem; /* beri jarak antar card supaya tidak menumpuk */
+  padding-bottom: 5rem; /* Increased padding to prevent cutoff */
 }
 
 .intro-section {
@@ -20,40 +36,80 @@
   scroll-snap-align: start;
   text-align: center;
   padding: 2rem;
-  color: #ffffff;
+  color: #e0e0ff;
   z-index: 2;
   background: transparent;
+  user-select: none;
+  font-weight: 700;
 }
 
+/* Ensure title visibility in intro-section */
+.intro-section h1,
+.intro-section .title-one {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 3.5rem; /* Larger for visibility */
+  font-weight: 900;
+  color: #f0f0ff;
+  text-shadow: 0 0 6px rgba(111, 111, 255, 0.5); /* Subtle glow for visibility */
+}
+
+.intro-section h1::after,
+.intro-section .title-one::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #8a8aff, #a0a0ff);
+  border-radius: 2px;
+}
+
+/* Perbaikan card */
 .vertical-service-card {
-  height: 100vh;
+  min-height: 100vh; /* tinggi full viewport to prevent stacking */
   scroll-snap-align: start;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 2rem;
   background: transparent;
+  user-select: none;
+  flex-shrink: 0;
 }
 
 .card-content {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 20px;
-  padding: 2rem;
+  background: rgba(30, 30, 70, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  padding: 2rem 3rem;
   max-width: 1100px;
   width: 90%;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 16px 48px rgba(15, 15, 40, 0.6);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
-  animation: fadeInUp 0.8s ease-in-out;
+  animation: fadeInUp 0.8s ease forwards;
   gap: 2rem;
 }
 
+.vertical-service-card:nth-child(2) .card-content {
+  animation-delay: 0.15s;
+}
+.vertical-service-card:nth-child(3) .card-content {
+  animation-delay: 0.3s;
+}
+.vertical-service-card:nth-child(4) .card-content {
+  animation-delay: 0.45s;
+}
+
 .card-content:hover {
-  transform: scale(1.02);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  transform: scale(1.04);
+  box-shadow: 0 20px 60px rgba(20, 20, 60, 0.8);
+  border-color: #a0a0ffcc;
 }
 
 @keyframes fadeInUp {
@@ -68,82 +124,105 @@
 }
 
 .full-image-container {
-  width: 50%;
+  width: 55%; /* buat gambar lebih besar */
   display: flex;
   justify-content: center;
   align-items: center;
-  perspective: 1000px;
+  perspective: 1100px;
 }
 
 .rounded-service-image {
   width: 100%;
-  max-width: 300px;
+  max-width: 380px; /* lebih besar dari sebelumnya */
   height: auto;
-  border-radius: 20px;
+  border-radius: 24px;
   object-fit: cover;
-  transform: rotateY(5deg);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-  transition: transform 0.4s ease;
+  transform: rotateY(7deg);
+  box-shadow:
+    0 0 12px 4px rgba(138, 138, 255, 0.6),
+    0 14px 30px rgba(0, 0, 40, 0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .rounded-service-image:hover {
-  transform: rotateY(0deg) scale(1.03);
+  transform: rotateY(0deg) scale(1.08);
+  box-shadow:
+    0 0 20px 8px rgba(138, 138, 255, 0.85),
+    0 20px 40px rgba(0, 0, 70, 0.8);
 }
 
 .service-card-text {
-  width: 50%;
+  width: 45%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 2rem;
+  padding-left: 2.5rem;
+  color: #e8e8ff;
+  user-select: text;
 }
 
 .title-one {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-  border-bottom: 2px solid #ffffff33;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
+  font-size: 2.8rem; /* sedikit lebih besar */
+  font-weight: 900;
+  color: #f0f0ff;
+  margin-bottom: 0.7rem;
+  position: relative;
+  display: inline-block;
+}
+
+.title-one::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #8a8aff, #a0a0ff);
+  border-radius: 2px;
 }
 
 .title-two {
   font-family: var(--font-base);
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: #e0e0e0;
-  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #c6c6ffcc;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 4px rgba(0, 0, 80, 0.3);
 }
 
 .service-card-text p {
   font-family: var(--font-base);
-  font-size: 1.2rem;
-  line-height: 1.6;
-  color: #f0f0f0;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  font-size: 1.35rem;
+  line-height: 1.65;
+  color: #dcdcffdd;
+  text-shadow: 0 0 3px rgba(0, 0, 50, 0.2);
+  user-select: text;
 }
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .card-content {
-    max-width: 90vw;
+    max-width: 95vw;
+    padding: 1.5rem 2rem;
   }
   .full-image-container,
   .service-card-text {
     width: 50%;
     padding: 0 1rem;
   }
+  .intro-section h1,
+  .intro-section .title-one {
+    font-size: 3rem;
+  }
   .title-one {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
   }
   .title-two {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
   }
   .service-card-text p {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
   }
 }
 
@@ -151,50 +230,49 @@
   .card-content {
     flex-direction: column;
     text-align: center;
-    padding: 1.5rem;
+    padding: 1.5rem 1rem;
   }
-
   .full-image-container,
   .service-card-text {
     width: 100%;
     padding: 0;
   }
-
   .rounded-service-image {
-    max-width: 220px;
-    margin-bottom: 1.5rem;
+    max-width: 280px;
+    margin-bottom: 1.8rem;
   }
-
+  .intro-section h1,
+  .intro-section .title-one {
+    font-size: 2.5rem;
+  }
   .title-one {
-    font-size: 1.9rem;
+    font-size: 2.2rem;
   }
-
   .title-two {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
-
   .service-card-text p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 }
 
 @media (max-width: 480px) {
-  .title-one {
-    font-size: 1.6rem;
+  .intro-section h1,
+  .intro-section .title-one {
+    font-size: 2rem;
   }
-
+  .title-one {
+    font-size: 1.8rem;
+  }
   .title-two {
+    font-size: 1.3rem;
+  }
+  .service-card-text p {
     font-size: 1.1rem;
   }
-
-  .service-card-text p {
-    font-size: 1rem;
-  }
-
   .rounded-service-image {
-    max-width: 180px;
+    max-width: 220px;
   }
-
   .card-content {
     padding: 1rem;
   }
