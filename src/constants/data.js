@@ -124,10 +124,9 @@ const CaseStudies = [
     text: 'Developing decentralized applications for Planq Foundation involved overcoming scalability and usability challenges to create user-friendly Web3 experiences.',
   },
   {
-    text: 'Research efforts led by Alfino Setiawana contributed to innovative blockchain protocols and improved interoperability solutions within the ecosystem.',
+    text: 'Our research efforts contributed to innovative blockchain protocols and improved interoperability solutions within the ecosystem.',
   },
 ];
-
 
 const WorkingProcess = [
   {
@@ -158,14 +157,15 @@ const WorkingProcess = [
   {
     title: 'Research and Development',
     description:
-      'Leading efforts in blockchain protocol innovation and ecosystem expansion strategies to push technological boundaries.',
+      'Our team leads innovation in blockchain protocols and ecosystem expansion strategies to push technological boundaries.',
   },
   {
     title: 'Community and Validator Support',
     description:
-      'Spearheading validator maintenance, community building, and educational outreach to empower users and developers.',
+      'We handle validator maintenance, foster community growth, and provide educational resources to empower users and developers.',
   },
 ];
+
 
 
 
