@@ -1,6 +1,6 @@
 .navbar-custom {
   padding: 40px 0;
-  background: rgba(255, 255, 255, 0.05) !important;
+  background: transparent;
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
