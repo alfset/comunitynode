@@ -194,16 +194,28 @@ const Team = [{
 
 
 const DApps = [{
+        name: 'CoFinance',
+        description: 'OneStop DeFi Service',
+        imageUrl: 'https://s3.amazonaws.com/keybase_processed_uploads/6529e729081d586e71e4fa64fac33c05_360_360.jpg',
+        link: 'https://www.cofinance.comunitynode.my.id'
+    },
+    {
         name: 'Multichain Oracle DAO',
         description: 'DAO that control Offchain to onchain',
         imageUrl: 'https://www.physica.finance/logo.png',
-        link: 'https://oracle.dao.comunitynode.my.id/#/',
+        link: 'https://oracle.dao.comunitynode.my.id/#/'
     },
     {
         name: 'Physica Finance',
         description: 'Decentral Exchange On Planq Network',
         imageUrl: 'https://www.physica.finance/logo.png',
         link: 'https://www.physica.finance',
+    },
+                   {
+        name: 'Physica Finance Indexer',
+        description: 'Decentral Exchange On Planq Network indexing tx worker and api data',
+        imageUrl: 'https://www.physica.finance/logo.png',
+        link: 'https://shorthaired-modern-avocado.glitch.me/api/7070/top-users',
     },
     {
         name: 'Mobile Wallet',
